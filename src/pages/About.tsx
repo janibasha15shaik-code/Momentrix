@@ -89,6 +89,7 @@ const About: React.FC = () => {
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-sm font-bold text-primary-600 tracking-wider uppercase mb-3">Our Core Values</h2>
             <h3 className="text-3xl md:text-5xl font-bold mb-6">What Drives Us Forward</h3>
+            <h3 className="text-3xl md:text-5xl font-bold mb-6">What Drives Us Forward</h3>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
