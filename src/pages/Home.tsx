@@ -481,7 +481,7 @@ const Home: React.FC = () => {
               </motion.div>
               
               <motion.h1 variants={fadeIn} className="text-5xl md:text-6xl lg:text-6xl font-extrabold leading-tight mb-6 tracking-tight">
-                Strategic and <span className="gradient-text">AI Automation</span> for Business Growth
+                Strategic Marketing and <span className="gradient-text">AI Automation</span> for Business Growth
               </motion.h1>
               
               <motion.div variants={fadeIn} className="text-xl md:text-2xl font-bold text-slate-700 dark:text-slate-300 mb-8 flex flex-wrap items-center gap-x-2 gap-y-1 min-h-[2.5rem] py-1">
