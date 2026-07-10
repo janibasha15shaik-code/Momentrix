@@ -157,6 +157,7 @@ const Footer: React.FC = () => {
           <div className="flex gap-6 text-sm text-slate-500 dark:text-slate-400">
             <Link to="/privacy-policy" className="hover:text-primary-600 transition-colors">Privacy Policy</Link>
             <Link to="/terms-of-service" className="hover:text-primary-600 transition-colors">Terms of Service</Link>
+            <a href="/sitemap.xml" target="_blank" rel="noopener noreferrer" className="hover:text-primary-600 transition-colors">Sitemap</a>
           </div>
         </div>
       </div>
