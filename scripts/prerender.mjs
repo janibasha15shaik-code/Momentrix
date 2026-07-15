@@ -32,7 +32,7 @@ const escapeHtml = (s) =>
 const canonicalFor = (path) => `${SITE.url}${path === '/' ? '' : path}`;
 
 function buildHead(route) {
-  const fullTitle = `${route.title}${SITE.titleSuffix}`;
+  const fullTitle = route.title.includes('Momentrix') ? route.title : `${route.title}${SITE.titleSuffix}`;
   const canonical = canonicalFor(route.path);
   const image = route.image || SITE.defaultImage;
   const t = escapeHtml(fullTitle);
@@ -43,6 +43,10 @@ function buildHead(route) {
     `<meta name="keywords" content="${escapeHtml(route.keywords)}" />`,
     `<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />`,
     `<meta name="author" content="${SITE.name}" />`,
+    `<meta name="geo.region" content="IN-AP" />`,
+    `<meta name="geo.placename" content="Guntur" />`,
+    `<meta name="geo.position" content="16.313229;80.42806" />`,
+    `<meta name="ICBM" content="16.313229, 80.42806" />`,
   ];
 
   if (SITE.googleSiteVerification) {

@@ -28,7 +28,7 @@ export const useSEO = ({
     const baseUrl = 'https://momentrixmedia.com';
     const currentPath = canonicalPath || window.location.pathname;
     const canonicalUrl = `${baseUrl}${currentPath === '/' ? '' : currentPath}`;
-    const fullTitle = `${title} | Momentrix Media`;
+    const fullTitle = title.includes('Momentrix') ? title : `${title} | Momentrix Media`;
 
     // 2. Helper to set/update meta tag
     const setMetaTag = (attributeName: string, attributeValue: string, content: string) => {
@@ -49,6 +49,10 @@ export const useSEO = ({
     setMetaTag('name', 'keywords', keywords);
     setMetaTag('name', 'robots', 'index, follow, max-image-preview:large, max-snippet:-1');
     setMetaTag('name', 'author', 'Momentrix Media');
+    setMetaTag('name', 'geo.region', 'IN-AP');
+    setMetaTag('name', 'geo.placename', 'Guntur');
+    setMetaTag('name', 'geo.position', '16.313229;80.42806');
+    setMetaTag('name', 'ICBM', '16.313229, 80.42806');
 
     if (googleSiteVerification) {
       setMetaTag('name', 'google-site-verification', googleSiteVerification);
