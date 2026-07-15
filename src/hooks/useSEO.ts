@@ -18,7 +18,7 @@ export const useSEO = ({
   keywords = 'Digital Marketing Agency in Guntur, Digital Marketing Agency in Hyderabad, SEO Services in Guntur, SEO Services in Hyderabad, Web Development Company in Guntur, AI Automation Services, Social Media Marketing Services Andhra Pradesh',
   canonicalPath,
   ogType = 'website',
-  ogImage = 'https://momentrixmedia.com/assets/Main%20Favicon%20Dark-D6WWraH_.png',
+  ogImage = 'https://momentrixmedia.com/assets/logo-dark.png',
   schemaMarkup,
   googleSiteVerification = '',
   bingSiteVerification = ''

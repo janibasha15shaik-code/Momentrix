@@ -19,7 +19,7 @@ const PrivacyPolicy: React.FC = () => {
         "name": "Momentrix Media",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://momentrixmedia.com/assets/Main%20Favicon%20Dark-D6WWraH_.png"
+          "url": "https://momentrixmedia.com/assets/logo-dark.png"
         }
       }
     }

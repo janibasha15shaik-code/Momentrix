@@ -46,7 +46,7 @@ const Home: React.FC = () => {
           "@id": "https://momentrixmedia.com/#organization",
           "name": "Momentrix Media",
           "url": "https://momentrixmedia.com",
-          "logo": "https://momentrixmedia.com/assets/Main%20Favicon%20Dark-D6WWraH_.png",
+          "logo": "https://momentrixmedia.com/assets/logo-dark.png",
           "email": "hello@momentrixmedia.com",
           "contactPoint": {
             "@type": "ContactPoint",
@@ -64,7 +64,7 @@ const Home: React.FC = () => {
         {
           "@type": "ProfessionalService",
           "name": "Momentrix Media",
-          "image": "https://momentrixmedia.com/assets/Main%20Favicon%20Dark-D6WWraH_.png",
+          "image": "https://momentrixmedia.com/assets/logo-dark.png",
           "@id": "https://momentrixmedia.com/#localbusiness",
           "url": "https://momentrixmedia.com",
           "telephone": "+91-868-6546-419",
