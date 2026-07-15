@@ -87,21 +87,7 @@ const Explore: React.FC = () => {
   // 11. Email template preview state
   const [emailPromo, setEmailPromo] = useState('WELCOME20');
 
-  useEffect(() => {
-    // Check if URL has a hash and set active tab accordingly
-    const hash = location.hash ? location.hash.substring(1) : '';
-    if (hash) {
-      const matchedCard = cards.find(c => c.id === hash);
-      if (matchedCard) {
-        setActiveTab(matchedCard.id);
-        // Scroll to container smoothly
-        const element = document.getElementById('explore-view-container');
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      }
-    }
-  }, [location]);
+
 
   const cards: ExploreCard[] = [
     {
@@ -234,6 +220,25 @@ subServices: [
       subServices: ['Automated Triggers & Flows', 'Newsletter Design Templates', 'Audience Segment Optimization', 'Retention Funnel Audits']
     }
   ];
+
+  /* eslint-disable react-hooks/set-state-in-effect */
+  useEffect(() => {
+    // Check if URL has a hash and set active tab accordingly
+    const hash = location.hash ? location.hash.substring(1) : '';
+    if (hash) {
+      const matchedCard = cards.find(c => c.id === hash);
+      if (matchedCard) {
+        setActiveTab(matchedCard.id);
+        // Scroll to container smoothly
+        const element = document.getElementById('explore-view-container');
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location]);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   // Simulator Triggers
   // AI Chat Submit

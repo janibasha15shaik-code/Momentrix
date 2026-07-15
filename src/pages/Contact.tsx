@@ -63,8 +63,9 @@ const Contact: React.FC = () => {
       setTimeout(() => {
         setShowSuccess(false);
       }, 6000);
-    } catch (err: any) {
-      setError(err.message || 'Something went wrong. Please try again.');
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : 'Something went wrong. Please try again.';
+      setError(msg);
     } finally {
       setLoading(false);
     }

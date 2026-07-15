@@ -23,11 +23,13 @@ const Navbar: React.FC = () => {
   }, []);
 
   // Close mobile menu and reset scroll state on route change
+  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
     setMobileMenuOpen(false);
     setMobileServicesOpen(false);
     setIsScrolled(window.scrollY > 20);
   }, [location]);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   const navLinks = [
     { name: 'Home', path: '/' },

@@ -195,8 +195,9 @@ const Careers: React.FC = () => {
       setForm({ firstName: '', lastName: '', email: '', phone: '' });
       setResumeFile(null);
       setResumeBase64('');
-    } catch (err: any) {
-      setError(err.message || 'Something went wrong. Please try again.');
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : 'Something went wrong. Please try again.';
+      setError(msg);
     } finally {
       setLoading(false);
     }

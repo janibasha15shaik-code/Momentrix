@@ -24,6 +24,15 @@ const staggerContainer = {
   }
 };
 
+// Swapping hero text state
+const heroWords = [
+  'SEO Services',
+  'Web Development',
+  'Digital Marketing',
+  'AI Automation',
+  'Social Media Marketing'
+];
+
 const Home: React.FC = () => {
   useSEO({
     title: 'Digital Marketing Agency & Web Development Company in Guntur & Hyderabad',
@@ -116,14 +125,6 @@ const Home: React.FC = () => {
     }
   });
 
-  // Swapping hero text state
-  const heroWords = [
-    'SEO Services',
-    'Web Development',
-    'Digital Marketing',
-    'AI Automation',
-    'Social Media Marketing'
-  ];
   const [wordIdx, setWordIdx] = useState(0);
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [showNewsletterSuccess, setShowNewsletterSuccess] = useState(false);
@@ -151,8 +152,9 @@ const Home: React.FC = () => {
       setTimeout(() => {
         setShowNewsletterSuccess(false);
       }, 5000);
-    } catch (err: any) {
-      setNewsletterError(err.message || 'Something went wrong. Please try again.');
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : 'Something went wrong. Please try again.';
+      setNewsletterError(msg);
     } finally {
       setNewsletterLoading(false);
     }
