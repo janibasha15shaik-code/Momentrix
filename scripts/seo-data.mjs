@@ -17,6 +17,9 @@ export const SITE = {
   twitter: '@momentrix_media',
   phone: '+91-868-6546-419',
   email: 'hello@momentrixmedia.com',
+  // Search Engine Verification Tokens (Paste verification strings from GSC/Bing here)
+  googleSiteVerification: '', 
+  bingSiteVerification: '',
 };
 
 // Cities/regions we serve — used for areaServed and to enrich local intent.

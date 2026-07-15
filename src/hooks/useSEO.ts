@@ -8,6 +8,8 @@ interface SEOProps {
   ogType?: string;
   ogImage?: string;
   schemaMarkup?: object;
+  googleSiteVerification?: string;
+  bingSiteVerification?: string;
 }
 
 export const useSEO = ({
@@ -17,7 +19,9 @@ export const useSEO = ({
   canonicalPath,
   ogType = 'website',
   ogImage = 'https://momentrixmedia.com/assets/Main%20Favicon%20Dark-D6WWraH_.png',
-  schemaMarkup
+  schemaMarkup,
+  googleSiteVerification = '',
+  bingSiteVerification = ''
 }: SEOProps) => {
   useEffect(() => {
     // 1. Base URL config
@@ -45,6 +49,13 @@ export const useSEO = ({
     setMetaTag('name', 'keywords', keywords);
     setMetaTag('name', 'robots', 'index, follow, max-image-preview:large, max-snippet:-1');
     setMetaTag('name', 'author', 'Momentrix Media');
+
+    if (googleSiteVerification) {
+      setMetaTag('name', 'google-site-verification', googleSiteVerification);
+    }
+    if (bingSiteVerification) {
+      setMetaTag('name', 'msvalidate.01', bingSiteVerification);
+    }
 
     // 5. Update Canonical link
     let canonicalLink = document.querySelector('link[rel="canonical"]');
@@ -94,5 +105,5 @@ export const useSEO = ({
         scriptToRemove.remove();
       }
     };
-  }, [title, description, keywords, canonicalPath, ogType, ogImage, schemaMarkup]);
+  }, [title, description, keywords, canonicalPath, ogType, ogImage, schemaMarkup, googleSiteVerification, bingSiteVerification]);
 };

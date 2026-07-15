@@ -43,6 +43,16 @@ function buildHead(route) {
     `<meta name="keywords" content="${escapeHtml(route.keywords)}" />`,
     `<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />`,
     `<meta name="author" content="${SITE.name}" />`,
+  ];
+
+  if (SITE.googleSiteVerification) {
+    tags.push(`<meta name="google-site-verification" content="${escapeHtml(SITE.googleSiteVerification)}" />`);
+  }
+  if (SITE.bingSiteVerification) {
+    tags.push(`<meta name="msvalidate.01" content="${escapeHtml(SITE.bingSiteVerification)}" />`);
+  }
+
+  tags.push(
     `<link rel="canonical" href="${canonical}" />`,
     // Open Graph
     `<meta property="og:site_name" content="${SITE.name}" />`,
@@ -57,8 +67,8 @@ function buildHead(route) {
     `<meta name="twitter:site" content="${SITE.twitter}" />`,
     `<meta name="twitter:title" content="${t}" />`,
     `<meta name="twitter:description" content="${d}" />`,
-    `<meta name="twitter:image" content="${image}" />`,
-  ];
+    `<meta name="twitter:image" content="${image}" />`
+  );
 
   if (route.schema) {
     tags.push(
