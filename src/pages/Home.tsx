@@ -38,6 +38,7 @@ const Home: React.FC = () => {
     title: 'Momentrix Media | Best Digital Marketing Agency & Web Development Company in Guntur & Hyderabad',
     description: 'Momentrix Media is a top-rated digital marketing agency and web development company serving Guntur, Vijayawada, Amaravati and Hyderabad. We scale brands with organic SEO, Meta & Google ads, web development, and AI automation.',
     keywords: 'Momentrix, Momentrix Media, Momentrix Guntur, Momentrix Hyderabad, Momentrix Media Guntur, Momentrix Media Hyderabad, Digital Marketing Agency in Guntur, Digital Marketing Agency in Hyderabad, SEO Services in Guntur, SEO Services in Hyderabad, Web Development Company in Guntur, Web Development Company in Hyderabad, Social Media Marketing Guntur, AI Automation Services, Best Digital Marketing Agency Andhra Pradesh, Best SEO Agency Guntur, Best Web Design Agency Hyderabad, Momentrix Media Agency',
+    googleSiteVerification: 'pk9KDgeeFJibf5zZd3ngCSwlVt06OaMcrmG6V9wWabU',
     schemaMarkup: {
       "@context": "https://schema.org",
       "@graph": [

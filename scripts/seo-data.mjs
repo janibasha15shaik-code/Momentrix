@@ -18,7 +18,7 @@ export const SITE = {
   phone: '+91-868-6546-419',
   email: 'hello@momentrixmedia.com',
   // Search Engine Verification Tokens (Paste verification strings from GSC/Bing here)
-  googleSiteVerification: '', 
+  googleSiteVerification: 'pk9KDgeeFJibf5zZd3ngCSwlVt06OaMcrmG6V9wWabU', 
   bingSiteVerification: '',
 };
 
