@@ -85,6 +85,52 @@ function buildHead(route) {
   return { fullTitle: t, tags: tags.join('\n    ') };
 }
 
+function buildFallbackNav() {
+  let nav = `\n    <!-- Fallback static navigation for non-JS crawlers -->\n    <noscript>\n      <nav style="display:none;">\n`;
+  for (const route of ROUTES) {
+    const name = route.path === '/' ? 'Home' : route.title.split(' | ')[0];
+    nav += `        <a href="${route.path}">${name}</a>\n`;
+  }
+  nav += `      </nav>\n    </noscript>\n  `;
+  return nav;
+}
+
+function generateSitemap() {
+  const currentDate = new Date().toISOString().split('T')[0];
+  let xml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
+  xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
+
+  for (const route of ROUTES) {
+    const canonical = canonicalFor(route.path);
+    let priority = '0.8';
+    let changefreq = 'weekly';
+
+    if (route.path === '/') {
+      priority = '1.0';
+      changefreq = 'weekly';
+    } else if (route.path === '/privacy-policy' || route.path === '/terms-of-service') {
+      priority = '0.3';
+      changefreq = 'yearly';
+    } else if (route.path === '/careers' || route.path === '/about' || route.path === '/explore') {
+      priority = '0.6';
+      changefreq = 'monthly';
+    } else if (route.path.startsWith('/services')) {
+      priority = '0.9';
+      changefreq = 'weekly';
+    }
+
+    xml += `  <url>\n`;
+    xml += `    <loc>${canonical}</loc>\n`;
+    xml += `    <lastmod>${currentDate}</lastmod>\n`;
+    xml += `    <changefreq>${changefreq}</changefreq>\n`;
+    xml += `    <priority>${priority}</priority>\n`;
+    xml += `  </url>\n`;
+  }
+
+  xml += `</urlset>\n`;
+  return xml;
+}
+
 function renderRoute(template, route) {
   const { fullTitle, tags } = buildHead(route);
 
@@ -105,6 +151,10 @@ function renderRoute(template, route) {
   } else {
     html = html.replace('</head>', `    ${tags}\n  </head>`);
   }
+
+  // Inject fallback navigation inside <div id="root"></div>
+  const fallbackNav = buildFallbackNav();
+  html = html.replace('<div id="root"></div>', `<div id="root">${fallbackNav}</div>`);
 
   return html;
 }
@@ -136,6 +186,17 @@ function main() {
   }
 
   console.log(`[prerender] wrote ${count} static route pages to dist/`);
+
+  // Generate sitemap.xml dynamically
+  try {
+    const sitemapXml = generateSitemap();
+    writeFileSync(join(DIST, 'sitemap.xml'), sitemapXml);
+    const PUBLIC_DIR = join(__dirname, '..', 'public');
+    writeFileSync(join(PUBLIC_DIR, 'sitemap.xml'), sitemapXml);
+    console.log(`[prerender] generated dynamic sitemap.xml with ${ROUTES.length} routes`);
+  } catch (err) {
+    console.error(`[prerender] failed to generate sitemap.xml:`, err);
+  }
 }
 
 main();

@@ -1,6 +1,7 @@
 {
+  "cleanUrls": true,
   "rewrites": [
     { "source": "/api/:path*", "destination": "/api" },
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "source": "/((?!assets/|favicon\\.svg|sitemap\\.xml|robots\\.txt|googlec14d4a2d38a923e6\\.html).*)$", "destination": "/index.html" }
   ]
 }
