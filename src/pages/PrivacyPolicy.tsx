@@ -13,13 +13,13 @@ const PrivacyPolicy: React.FC = () => {
       "@type": "WebPage",
       "name": "Privacy Policy - Momentrix Media",
       "description": "Learn about our data collection and privacy practices.",
-      "url": "https://momentrixmedia.com/privacy-policy",
+      "url": "https://www.momentrixmedia.com/privacy-policy",
       "publisher": {
         "@type": "Organization",
         "name": "Momentrix Media",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://momentrixmedia.com/assets/logo-dark.png"
+          "url": "https://www.momentrixmedia.com/assets/logo-dark.png"
         }
       }
     }

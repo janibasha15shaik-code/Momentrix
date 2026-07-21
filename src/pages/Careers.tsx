@@ -25,13 +25,13 @@ const Careers: React.FC = () => {
       "@type": "WebPage",
       "name": "Careers - Momentrix Media",
       "description": "Join our team of creative, analytical, and growth-oriented professionals.",
-      "url": "https://momentrixmedia.com/careers",
+      "url": "https://www.momentrixmedia.com/careers",
       "publisher": {
         "@type": "Organization",
         "name": "Momentrix Media",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://momentrixmedia.com/assets/logo-dark.png"
+          "url": "https://www.momentrixmedia.com/assets/logo-dark.png"
         }
       }
     }

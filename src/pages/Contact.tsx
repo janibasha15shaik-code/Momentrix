@@ -13,7 +13,7 @@ const Contact: React.FC = () => {
       "@type": "ContactPage",
       "name": "Contact Us - Momentrix Media",
       "description": "Book a free digital growth strategy session with our technical marketing team.",
-      "url": "https://momentrixmedia.com/contact",
+      "url": "https://www.momentrixmedia.com/contact",
       "mainEntity": {
         "@type": "Organization",
         "name": "Momentrix Media",

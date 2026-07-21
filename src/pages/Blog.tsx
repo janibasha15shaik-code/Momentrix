@@ -13,20 +13,20 @@ const Blog: React.FC = () => {
       "@type": "Blog",
       "name": "Momentrix Media Insights Blog",
       "description": "Latest trends, strategies, and insights from our team of digital marketing experts.",
-      "url": "https://momentrixmedia.com/blog",
+      "url": "https://www.momentrixmedia.com/blog",
       "publisher": {
         "@type": "Organization",
         "name": "Momentrix Media",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://momentrixmedia.com/assets/logo-dark.png"
+          "url": "https://www.momentrixmedia.com/assets/logo-dark.png"
         }
       },
       "blogPost": [
         {
           "@type": "BlogPosting",
           "headline": "10 SEO Trends to Watch in 2026",
-          "url": "https://momentrixmedia.com/blog",
+          "url": "https://www.momentrixmedia.com/blog",
           "datePublished": "2025-10-12",
           "author": {
             "@type": "Person",
@@ -37,7 +37,7 @@ const Blog: React.FC = () => {
         {
           "@type": "BlogPosting",
           "headline": "Maximizing ROI with TikTok Ads",
-          "url": "https://momentrixmedia.com/blog",
+          "url": "https://www.momentrixmedia.com/blog",
           "datePublished": "2025-10-05",
           "author": {
             "@type": "Person",

@@ -13,13 +13,13 @@ const About: React.FC = () => {
       "@type": "AboutPage",
       "name": "About Us - Momentrix Media",
       "description": "Learn about our mission, core values, and team.",
-      "url": "https://momentrixmedia.com/about",
+      "url": "https://www.momentrixmedia.com/about",
       "publisher": {
         "@type": "Organization",
         "name": "Momentrix Media",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://momentrixmedia.com/assets/logo-dark.png"
+          "url": "https://www.momentrixmedia.com/assets/logo-dark.png"
         }
       }
     }

@@ -6,13 +6,13 @@
 // Keep titles/descriptions here in sync with the runtime useSEO() calls in each page.
 
 export const SITE = {
-  url: 'https://momentrixmedia.com',
+  url: 'https://www.momentrixmedia.com',
   name: 'Momentrix Media',
   brand: 'Momentrix Media',
   // Suffix appended to every page title (matches useSEO.ts)
   titleSuffix: ' | Momentrix Media',
   defaultImage:
-    'https://momentrixmedia.com/assets/logo-dark.png',
+    'https://www.momentrixmedia.com/assets/logo-dark.png',
   locale: 'en_IN',
   twitter: '@momentrix_media',
   phone: '+91-868-6546-419',

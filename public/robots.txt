@@ -4,4 +4,4 @@ Allow: /
 # Block nothing important; allow all crawlers full access.
 Disallow: /api/
 
-Sitemap: https://momentrixmedia.com/sitemap.xml
+Sitemap: https://www.momentrixmedia.com/sitemap.xml

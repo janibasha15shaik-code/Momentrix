@@ -21,7 +21,7 @@ const Services: React.FC = () => {
       "@type": "WebPage",
       "name": "Our Services & Digital Capabilities - Momentrix Media",
       "description": "Explore our digital transformational capabilities including web development, search engine optimization, PPC search marketing, social media campaigns, and AI workflows.",
-      "url": "https://momentrixmedia.com/services",
+      "url": "https://www.momentrixmedia.com/services",
       "publisher": {
         "@type": "Organization",
         "name": "Momentrix Media"

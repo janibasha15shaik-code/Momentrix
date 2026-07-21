@@ -44,10 +44,10 @@ const Home: React.FC = () => {
       "@graph": [
         {
           "@type": "Organization",
-          "@id": "https://momentrixmedia.com/#organization",
+          "@id": "https://www.momentrixmedia.com/#organization",
           "name": "Momentrix Media",
-          "url": "https://momentrixmedia.com",
-          "logo": "https://momentrixmedia.com/assets/logo-dark.png",
+          "url": "https://www.momentrixmedia.com",
+          "logo": "https://www.momentrixmedia.com/assets/logo-dark.png",
           "email": "hello@momentrixmedia.com",
           "contactPoint": {
             "@type": "ContactPoint",
@@ -65,9 +65,9 @@ const Home: React.FC = () => {
         {
           "@type": "ProfessionalService",
           "name": "Momentrix Media",
-          "image": "https://momentrixmedia.com/assets/logo-dark.png",
-          "@id": "https://momentrixmedia.com/#localbusiness",
-          "url": "https://momentrixmedia.com",
+          "image": "https://www.momentrixmedia.com/assets/logo-dark.png",
+          "@id": "https://www.momentrixmedia.com/#localbusiness",
+          "url": "https://www.momentrixmedia.com",
           "telephone": "+91-868-6546-419",
           "email": "hello@momentrixmedia.com",
           "priceRange": "₹₹",
@@ -115,10 +115,10 @@ const Home: React.FC = () => {
         {
           "@type": "WebSite",
           "name": "Momentrix Media",
-          "url": "https://momentrixmedia.com",
+          "url": "https://www.momentrixmedia.com",
           "potentialAction": {
             "@type": "SearchAction",
-            "target": "https://momentrixmedia.com/explore?q={search_term_string}",
+            "target": "https://www.momentrixmedia.com/explore?q={search_term_string}",
             "query-input": "required name=search_term_string"
           }
         }
@@ -772,10 +772,10 @@ const Home: React.FC = () => {
                 <div className="space-y-6">
                   <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/30 border border-primary-500/20">
                     <div className="text-xs text-primary-500 font-bold mb-1 flex items-center gap-1.5">
-                      Ad · <a href="https://momentrixmedia.com" target="_blank" rel="noopener noreferrer" className="hover:underline">momentrixmedia.com</a><span className="bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 text-[9px] px-1.5 py-0.5 rounded font-extrabold">#1 RANK</span>
+                      Ad · <a href="https://www.momentrixmedia.com" target="_blank" rel="noopener noreferrer" className="hover:underline">momentrixmedia.com</a><span className="bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 text-[9px] px-1.5 py-0.5 rounded font-extrabold">#1 RANK</span>
                     </div>
                     <h4 className="text-base font-bold text-blue-600 dark:text-blue-400 hover:underline mb-1">
-                      <a href="https://momentrixmedia.com" target="_blank" rel="noopener noreferrer">Momentrix Media</a>
+                      <a href="https://www.momentrixmedia.com" target="_blank" rel="noopener noreferrer">Momentrix Media</a>
                     </h4>
                     <p className="text-xs text-slate-600 dark:text-slate-400">
                       We engineer high-impact SEO domain blueprints, design local optimization matrix strategies, and maximize commercial intent traffic.

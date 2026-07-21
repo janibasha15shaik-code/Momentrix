@@ -13,13 +13,13 @@ const Portfolio: React.FC = () => {
       "@type": "WebPage",
       "name": "Portfolio - Momentrix Media",
       "description": "Explore our digital marketing, SEO, and web development case studies and projects.",
-      "url": "https://momentrixmedia.com/portfolio",
+      "url": "https://www.momentrixmedia.com/portfolio",
       "publisher": {
         "@type": "Organization",
         "name": "Momentrix Media",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://momentrixmedia.com/assets/logo-dark.png"
+          "url": "https://www.momentrixmedia.com/assets/logo-dark.png"
         }
       }
     }

@@ -13,13 +13,13 @@ const CaseStudies: React.FC = () => {
       "@type": "WebPage",
       "name": "Case Studies - Momentrix Media",
       "description": "Read our digital marketing, SEO, and web development case studies.",
-      "url": "https://momentrixmedia.com/case-studies",
+      "url": "https://www.momentrixmedia.com/case-studies",
       "publisher": {
         "@type": "Organization",
         "name": "Momentrix Media",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://momentrixmedia.com/assets/logo-dark.png"
+          "url": "https://www.momentrixmedia.com/assets/logo-dark.png"
         }
       }
     }

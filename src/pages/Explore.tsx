@@ -29,13 +29,13 @@ const Explore: React.FC = () => {
       "@type": "WebPage",
       "name": "Explore Solutions - Momentrix Media",
       "description": "Interactive workspace showcasing our AI automation, digital marketing, SEO, and web development simulators.",
-      "url": "https://momentrixmedia.com/explore",
+      "url": "https://www.momentrixmedia.com/explore",
       "publisher": {
         "@type": "Organization",
         "name": "Momentrix Media",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://momentrixmedia.com/assets/logo-dark.png"
+          "url": "https://www.momentrixmedia.com/assets/logo-dark.png"
         }
       }
     }

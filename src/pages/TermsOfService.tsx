@@ -13,13 +13,13 @@ const TermsOfService: React.FC = () => {
       "@type": "WebPage",
       "name": "Terms of Service - Momentrix Media",
       "description": "Read our terms of service and website usage rules.",
-      "url": "https://momentrixmedia.com/terms-of-service",
+      "url": "https://www.momentrixmedia.com/terms-of-service",
       "publisher": {
         "@type": "Organization",
         "name": "Momentrix Media",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://momentrixmedia.com/assets/logo-dark.png"
+          "url": "https://www.momentrixmedia.com/assets/logo-dark.png"
         }
       }
     }

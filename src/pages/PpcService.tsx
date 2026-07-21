@@ -17,7 +17,7 @@ const PpcService: React.FC = () => {
       "provider": {
         "@type": "Organization",
         "name": "Momentrix Media",
-        "url": "https://momentrixmedia.com"
+        "url": "https://www.momentrixmedia.com"
       },
       "areaServed": "Hyderabad, Guntur, India",
       "hasOfferCatalog": {
