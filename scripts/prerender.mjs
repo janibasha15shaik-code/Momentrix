@@ -76,7 +76,7 @@ function buildHead(route) {
 
   if (route.schema) {
     tags.push(
-      `<script type="application/ld+json">${JSON.stringify(
+      `<script type="application/ld+json" id="seo-schema-script">${JSON.stringify(
         route.schema
       )}</script>`
     );
