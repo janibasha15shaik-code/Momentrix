@@ -75,7 +75,7 @@ router.post('/', async (req, res) => {
               <p>Every month, we share high-value digital marketing strategies, search engine optimization blueprints, and custom AI automation concepts designed to streamline workflows and drive enterprise growth.</p>
               <p style="margin-bottom: 32px;">In the meantime, feel free to explore our digital transformation solutions or reach out if you have any questions.</p>
               <div style="text-align: center;">
-                <a href="https://www.momentrixmedia.com/services" class="cta-button" style="color: #ffffff;">Explore Our Services</a>
+                <a href="https://momentrixmedia.com/services" class="cta-button" style="color: #ffffff;">Explore Our Services</a>
               </div>
             </div>
             <div class="footer">
