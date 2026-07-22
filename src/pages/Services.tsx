@@ -19,6 +19,7 @@ const Services: React.FC = () => {
     schemaMarkup: {
       "@context": "https://schema.org",
       "@type": "WebPage",
+      "@id": "https://www.momentrixmedia.com/services#webpage",
       "name": "Our Services & Digital Capabilities - Momentrix Media",
       "description": "Explore our digital transformational capabilities including web development, search engine optimization, PPC search marketing, social media campaigns, and AI workflows.",
       "url": "https://www.momentrixmedia.com/services",

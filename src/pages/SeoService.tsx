@@ -12,6 +12,7 @@ const SeoService: React.FC = () => {
     schemaMarkup: {
       "@context": "https://schema.org",
       "@type": "Service",
+      "@id": "https://www.momentrixmedia.com/services/seo#service",
       "name": "Search Engine Optimization (SEO) Services",
       "description": "Premium SEO Services in Hyderabad and Guntur, establishing domain authority, technical auditing, local SEO, and keyword optimization to rank your website on top.",
       "provider": {

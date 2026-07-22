@@ -12,6 +12,7 @@ const WebService: React.FC = () => {
     schemaMarkup: {
       "@context": "https://schema.org",
       "@type": "Service",
+      "@id": "https://www.momentrixmedia.com/services/web#service",
       "name": "Web Development Services",
       "description": "Premium Web Development Services in Hyderabad. We engineer high-performance web systems, custom portals, E-commerce web engines, and API integrations.",
       "provider": {

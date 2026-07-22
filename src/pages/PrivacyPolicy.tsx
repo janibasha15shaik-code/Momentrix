@@ -11,6 +11,7 @@ const PrivacyPolicy: React.FC = () => {
     schemaMarkup: {
       "@context": "https://schema.org",
       "@type": "WebPage",
+      "@id": "https://www.momentrixmedia.com/privacy-policy#webpage",
       "name": "Privacy Policy - Momentrix Media",
       "description": "Learn about our data collection and privacy practices.",
       "url": "https://www.momentrixmedia.com/privacy-policy",

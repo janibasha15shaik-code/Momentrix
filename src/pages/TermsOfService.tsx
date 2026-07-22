@@ -11,6 +11,7 @@ const TermsOfService: React.FC = () => {
     schemaMarkup: {
       "@context": "https://schema.org",
       "@type": "WebPage",
+      "@id": "https://www.momentrixmedia.com/terms-of-service#webpage",
       "name": "Terms of Service - Momentrix Media",
       "description": "Read our terms of service and website usage rules.",
       "url": "https://www.momentrixmedia.com/terms-of-service",

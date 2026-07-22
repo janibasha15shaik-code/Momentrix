@@ -11,6 +11,7 @@ const CaseStudies: React.FC = () => {
     schemaMarkup: {
       "@context": "https://schema.org",
       "@type": "WebPage",
+      "@id": "https://www.momentrixmedia.com/case-studies#webpage",
       "name": "Case Studies - Momentrix Media",
       "description": "Read our digital marketing, SEO, and web development case studies.",
       "url": "https://www.momentrixmedia.com/case-studies",

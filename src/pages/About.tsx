@@ -11,6 +11,7 @@ const About: React.FC = () => {
     schemaMarkup: {
       "@context": "https://schema.org",
       "@type": "AboutPage",
+      "@id": "https://www.momentrixmedia.com/about#webpage",
       "name": "About Us - Momentrix Media",
       "description": "Learn about our mission, core values, and team.",
       "url": "https://www.momentrixmedia.com/about",

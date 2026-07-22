@@ -23,6 +23,7 @@ const Careers: React.FC = () => {
     schemaMarkup: {
       "@context": "https://schema.org",
       "@type": "WebPage",
+      "@id": "https://www.momentrixmedia.com/careers#webpage",
       "name": "Careers - Momentrix Media",
       "description": "Join our team of creative, analytical, and growth-oriented professionals.",
       "url": "https://www.momentrixmedia.com/careers",

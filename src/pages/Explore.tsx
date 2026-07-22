@@ -27,6 +27,7 @@ const Explore: React.FC = () => {
     schemaMarkup: {
       "@context": "https://schema.org",
       "@type": "WebPage",
+      "@id": "https://www.momentrixmedia.com/explore#webpage",
       "name": "Explore Solutions - Momentrix Media",
       "description": "Interactive workspace showcasing our AI automation, digital marketing, SEO, and web development simulators.",
       "url": "https://www.momentrixmedia.com/explore",

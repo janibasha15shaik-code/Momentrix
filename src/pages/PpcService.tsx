@@ -12,6 +12,7 @@ const PpcService: React.FC = () => {
     schemaMarkup: {
       "@context": "https://schema.org",
       "@type": "Service",
+      "@id": "https://www.momentrixmedia.com/services/performance#service",
       "name": "Paid Acquisition & PPC Management Services",
       "description": "High-ROAS Meta ads, Google ads, and conversion optimization performance marketing services.",
       "provider": {

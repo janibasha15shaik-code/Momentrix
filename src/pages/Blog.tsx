@@ -11,6 +11,7 @@ const Blog: React.FC = () => {
     schemaMarkup: {
       "@context": "https://schema.org",
       "@type": "Blog",
+      "@id": "https://www.momentrixmedia.com/blog#blog",
       "name": "Momentrix Media Insights Blog",
       "description": "Latest trends, strategies, and insights from our team of digital marketing experts.",
       "url": "https://www.momentrixmedia.com/blog",

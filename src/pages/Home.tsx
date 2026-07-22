@@ -47,7 +47,10 @@ const Home: React.FC = () => {
           "@id": "https://www.momentrixmedia.com/#organization",
           "name": "Momentrix Media",
           "url": "https://www.momentrixmedia.com",
-          "logo": "https://www.momentrixmedia.com/assets/logo-dark.png",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.momentrixmedia.com/assets/logo-dark.png"
+          },
           "email": "hello@momentrixmedia.com",
           "contactPoint": {
             "@type": "ContactPoint",
@@ -64,9 +67,9 @@ const Home: React.FC = () => {
         },
         {
           "@type": "ProfessionalService",
+          "@id": "https://www.momentrixmedia.com/#localbusiness",
           "name": "Momentrix Media",
           "image": "https://www.momentrixmedia.com/assets/logo-dark.png",
-          "@id": "https://www.momentrixmedia.com/#localbusiness",
           "url": "https://www.momentrixmedia.com",
           "telephone": "+91-868-6546-419",
           "email": "hello@momentrixmedia.com",
@@ -89,15 +92,11 @@ const Home: React.FC = () => {
             { "@type": "City", "name": "Guntur" },
             { "@type": "City", "name": "Vijayawada" },
             { "@type": "City", "name": "Amaravati" },
-            { "@type": "City", "name": "Hyderabad" }
+            { "@type": "City", "name": "Hyderabad" },
+            { "@type": "City", "name": "Andhra Pradesh" },
+            { "@type": "City", "name": "Telangana" },
+            { "@type": "City", "name": "India" }
           ],
-          "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "5.0",
-            "reviewCount": "120",
-            "bestRating": "5",
-            "worstRating": "1"
-          },
           "openingHoursSpecification": {
             "@type": "OpeningHoursSpecification",
             "dayOfWeek": [
@@ -110,12 +109,21 @@ const Home: React.FC = () => {
             ],
             "opens": "09:00",
             "closes": "18:00"
+          },
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "5.0",
+            "reviewCount": "120",
+            "bestRating": "5",
+            "worstRating": "1"
           }
         },
         {
           "@type": "WebSite",
+          "@id": "https://www.momentrixmedia.com/#website",
           "name": "Momentrix Media",
           "url": "https://www.momentrixmedia.com",
+          "publisher": { "@id": "https://www.momentrixmedia.com/#organization" },
           "potentialAction": {
             "@type": "SearchAction",
             "target": "https://www.momentrixmedia.com/explore?q={search_term_string}",

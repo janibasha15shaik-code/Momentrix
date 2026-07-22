@@ -11,6 +11,7 @@ const Contact: React.FC = () => {
     schemaMarkup: {
       "@context": "https://schema.org",
       "@type": "ContactPage",
+      "@id": "https://www.momentrixmedia.com/contact#webpage",
       "name": "Contact Us - Momentrix Media",
       "description": "Book a free digital growth strategy session with our technical marketing team.",
       "url": "https://www.momentrixmedia.com/contact",

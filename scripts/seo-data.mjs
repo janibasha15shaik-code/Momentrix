@@ -18,7 +18,7 @@ export const SITE = {
   phone: '+91-868-6546-419',
   email: 'hello@momentrixmedia.com',
   // Search Engine Verification Tokens (Paste verification strings from GSC/Bing here)
-  googleSiteVerification: 'pk9KDgeeFJibf5zZd3ngCSwlVt06OaMcrmG6V9wWabU', 
+  googleSiteVerification: 'pk9KDgeeFJibf5zZd3ngCSwlVt06OaMcrmG6V9wWabU',
   bingSiteVerification: '',
 };
 
@@ -84,7 +84,12 @@ export const ORG_GRAPH = {
         latitude: 16.3132285,
         longitude: 80.42806,
       },
-      areaServed: AREA_SERVED.map((name) => ({ '@type': 'City', name })),
+      areaServed: [
+        { '@type': 'City', name: 'Guntur' },
+        { '@type': 'City', name: 'Vijayawada' },
+        { '@type': 'City', name: 'Amaravati' },
+        { '@type': 'City', name: 'Hyderabad' }
+      ],
       openingHoursSpecification: {
         '@type': 'OpeningHoursSpecification',
         dayOfWeek: [
@@ -121,17 +126,6 @@ export const ORG_GRAPH = {
   ],
 };
 
-// Helper: build a Service JSON-LD node for the service pages.
-const service = (name, description, serviceType) => ({
-  '@context': 'https://schema.org',
-  '@type': 'Service',
-  name,
-  serviceType,
-  description,
-  provider: { '@type': 'Organization', name: 'Momentrix Media', url: SITE.url },
-  areaServed: AREA_SERVED.map((n) => ({ '@type': 'City', name: n })),
-});
-
 // Per-route SEO. `title` here is WITHOUT the brand suffix (added at render time).
 export const ROUTES = [
   {
@@ -148,56 +142,210 @@ export const ROUTES = [
     path: '/about',
     title: 'Our Story & Agency Core Values',
     description:
-      'Learn about Momentrix Media — a collective of digital innovators and data-driven strategists in Guntur specializing in AI automation, SEO, paid performance, and web development across Andhra Pradesh & Hyderabad.',
+      'Learn about Momentrix Media, a collective of digital innovators and data-driven strategists specializing in AI automation, SEO, and paid performance marketing.',
     keywords:
-      'About Momentrix Media, Digital Marketing Experts Guntur, AI Automation Team, Marketing Agency Andhra Pradesh, Agency Core Values',
+      'About Momentrix Media, Digital Marketing Experts, AI Automation Team Hyderabad, Agency Core Values',
+    schema: {
+      '@context': 'https://schema.org',
+      '@type': 'AboutPage',
+      '@id': `${SITE.url}/about#webpage`,
+      name: 'About Us - Momentrix Media',
+      description: 'Learn about our mission, core values, and team.',
+      url: `${SITE.url}/about`,
+      publisher: {
+        '@type': 'Organization',
+        name: 'Momentrix Media',
+        logo: {
+          '@type': 'ImageObject',
+          url: SITE.defaultImage,
+        },
+      },
+    },
   },
   {
     path: '/services',
     title: 'Our Services & Digital Capabilities',
     description:
-      'Explore Momentrix Media capabilities in Guntur & Hyderabad: AI automation, SEO, PPC search ads, web development, performance marketing, social media, and email marketing.',
+      'Explore Momentrix Media capabilities in Guntur & Hyderabad: AI automation, search engine optimization (SEO), PPC search ads, web development, performance marketing, social media, and email marketing.',
     keywords:
       'Digital Marketing Services Guntur, AI Automation Services, SEO Services in Hyderabad, PPC Management, Web Development Company Guntur, Social Media Marketing',
+    schema: {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      '@id': `${SITE.url}/services#webpage`,
+      name: 'Our Services & Digital Capabilities - Momentrix Media',
+      description: 'Explore our digital transformational capabilities including web development, search engine optimization, PPC search marketing, social media campaigns, and AI workflows.',
+      url: `${SITE.url}/services`,
+      publisher: {
+        '@type': 'Organization',
+        name: 'Momentrix Media',
+      },
+    },
   },
   {
     path: '/services/seo',
-    title: 'SEO Services in Guntur & Hyderabad',
+    title: 'SEO Services in Hyderabad & Guntur',
     description:
-      'Momentrix Media provides professional SEO services in Guntur, Vijayawada and Hyderabad. We build domain-authority blueprints, technical audits, local SEO, and capture high-intent search traffic.',
+      'Momentrix Media provides professional SEO Services in Hyderabad and Guntur. We build domain authority blueprints, optimize web speed, and capture high-intent traffic.',
     keywords:
-      'SEO Services in Guntur, SEO Services in Hyderabad, Local SEO Agency Guntur, Technical SEO Audit, Search Engine Optimization Vijayawada, Domain Authority link building',
-    schema: service(
-      'SEO Services',
-      'Premium SEO services in Guntur and Hyderabad — domain authority building, technical auditing, local SEO, and keyword optimization to rank your website on top of Google.',
-      'Search Engine Optimization'
-    ),
+      'SEO Services in Hyderabad, Search Engine Optimization Guntur, Technical SEO Audit, Local SEO Agency, Domain Authority link building',
+    schema: {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      '@id': `${SITE.url}/services/seo#service`,
+      name: 'Search Engine Optimization (SEO) Services',
+      description: 'Premium SEO Services in Hyderabad and Guntur, establishing domain authority, technical auditing, local SEO, and keyword optimization to rank your website on top.',
+      provider: {
+        '@type': 'Organization',
+        name: 'Momentrix Media',
+        url: SITE.url,
+      },
+      areaServed: 'Hyderabad, Guntur, India',
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'SEO Capabilities',
+        itemListElement: [
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'Technical SEO Auditing',
+            },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'On-Page Semantic Optimization',
+            },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'Off-Page Link Building',
+            },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'Local SEO & Map Listing',
+            },
+          },
+        ],
+      },
+    },
   },
   {
     path: '/services/social',
     title: 'Social Media Marketing Services in Guntur & Hyderabad',
     description:
-      'Momentrix Media runs elite social media marketing in Guntur & Hyderabad. We build brand loyalty and high-engagement ad campaigns on Instagram, Facebook, and LinkedIn.',
+      'Momentrix Media runs elite Social Media Marketing in Guntur & Hyderabad. We build brand loyalty and high-engagement ad campaigns on Instagram, Facebook, and LinkedIn.',
     keywords:
       'Social Media Marketing Services Guntur, Social Media Agency Hyderabad, Instagram Marketing, Facebook Campaigns Guntur, Brand Engagement Andhra Pradesh',
-    schema: service(
-      'Social Media Marketing',
-      'Social media marketing and paid social campaigns across Instagram, Facebook and LinkedIn for brands in Guntur, Vijayawada and Hyderabad.',
-      'Social Media Marketing'
-    ),
+    schema: {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      '@id': `${SITE.url}/services/social#service`,
+      name: 'Social Media Marketing Services',
+      description: 'Professional Social Media Marketing Services in Hyderabad, building brand communities, managing page updates, running Meta ads campaigns, and growing organic engagement.',
+      provider: {
+        '@type': 'Organization',
+        name: 'Momentrix Media',
+        url: SITE.url,
+      },
+      areaServed: 'Hyderabad, Guntur, India',
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'Social Media Capabilities',
+        itemListElement: [
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'Page Management & Schedules',
+            },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'Meta Sponsored Ad Campaigns',
+            },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'Organic Community Growth',
+            },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'Influencer Relations & Campaigns',
+            },
+          },
+        ],
+      },
+    },
   },
   {
     path: '/services/web',
-    title: 'Web Development Services in Guntur & Hyderabad',
+    title: 'Web Development Services in Hyderabad & Guntur',
     description:
-      'Momentrix Media is a top web development company in Guntur & Hyderabad. We engineer high-performance websites, custom portals, e-commerce engines, and API integrations.',
+      'Momentrix Media is a top-tier Web Development Company in Hyderabad. We engineer high-performance web systems, custom portals, E-commerce web engines, and API integrations.',
     keywords:
-      'Web Development Company in Guntur, Web Development Company in Hyderabad, E-commerce Web Developer, React Next.js Developer Andhra Pradesh, Responsive Web Design Guntur',
-    schema: service(
-      'Web Development',
-      'High-performance web development in Guntur and Hyderabad — custom websites, portals, e-commerce engines and API integrations built on modern React/Next.js stacks.',
-      'Web Development'
-    ),
+      'Web Development Company in Hyderabad, Web Development Services, E-commerce Web Developer, React Next.js Developer Hyderabad, Responsive Web Design',
+    schema: {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      '@id': `${SITE.url}/services/web#service`,
+      name: 'Web Development Services',
+      description: 'Premium Web Development Services in Hyderabad. We engineer high-performance web systems, custom portals, E-commerce web engines, and API integrations.',
+      provider: {
+        '@type': 'Organization',
+        name: 'Momentrix Media',
+        url: SITE.url,
+      },
+      areaServed: 'Hyderabad, Guntur, India',
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'Web Development Capabilities',
+        itemListElement: [
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'Custom Portal Engineering',
+            },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'Responsive Web UI/UX Design',
+            },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'E-Commerce Systems Setup',
+            },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'API & ERP Integration Services',
+            },
+          },
+        ],
+      },
+    },
   },
   {
     path: '/services/performance',
@@ -206,74 +354,266 @@ export const ROUTES = [
       'Momentrix Media is a top PPC management agency in Guntur & Hyderabad. Scale revenue with high-ROAS Meta Ads, Google Ads, and performance-marketing funnels.',
     keywords:
       'PPC Services in Guntur, PPC Services in Hyderabad, Paid Acquisition Agency, Meta Ads Specialist, Google Ads Management Andhra Pradesh, High ROAS Campaigns',
-    schema: service(
-      'PPC & Paid Acquisition',
-      'Performance marketing and PPC management in Guntur and Hyderabad — high-ROAS Meta Ads, Google Ads and conversion funnels.',
-      'Pay Per Click Advertising'
-    ),
+    schema: {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      '@id': `${SITE.url}/services/performance#service`,
+      name: 'Paid Acquisition & PPC Management Services',
+      description: 'High-ROAS Meta ads, Google ads, and conversion optimization performance marketing services.',
+      provider: {
+        '@type': 'Organization',
+        name: 'Momentrix Media',
+        url: SITE.url,
+      },
+      areaServed: 'Hyderabad, Guntur, India',
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'PPC & Acquisition Capabilities',
+        itemListElement: [
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'Google Ads & PPC Search Campaigns',
+            },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'Meta Ads & Social Targeting',
+            },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'High Converting Landing Page Optimization',
+            },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'Remarketing & Attribution Tracking',
+            },
+          },
+        ],
+      },
+    },
   },
   {
     path: '/portfolio',
     title: 'Our Case Studies & Creative Portfolio',
     description:
-      'Explore the Momentrix Media project portfolio. See how our data-driven strategies and engineering scaled traffic, acquisition, and conversions for brands in Andhra Pradesh & beyond.',
+      'Explore the Momentrix Media project portfolio. Read how our data-driven strategies and engineering systems scaled traffic, acquisition, and conversion metrics.',
     keywords:
-      'Momentrix Media Portfolio, Marketing Case Studies, Web Development Projects Guntur, SEO Success Stories, High-ROAS campaigns',
+      'Momentrix Media Portfolio, Marketing Case Studies, Web Development Projects, SEO Success Stories Hyderabad, High-ROAS campaigns',
+    schema: {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      '@id': `${SITE.url}/portfolio#webpage`,
+      name: 'Portfolio - Momentrix Media',
+      description: 'Explore our digital marketing, SEO, and web development case studies and projects.',
+      url: `${SITE.url}/portfolio`,
+      publisher: {
+        '@type': 'Organization',
+        name: 'Momentrix Media',
+        logo: {
+          '@type': 'ImageObject',
+          url: SITE.defaultImage,
+        },
+      },
+    },
   },
   {
     path: '/case-studies',
     title: 'Marketing Case Studies & SEO Success Stories',
     description:
-      'Read our digital marketing and SEO case studies. Learn how we scale organic traffic, optimize search campaigns, and reduce acquisition costs for brands in Guntur, Hyderabad and across India.',
+      'Read our digital marketing and SEO case studies. Learn how we scale organic traffic, optimize search campaigns, and decrease acquisition costs for brands.',
     keywords:
-      'Marketing Case Studies, SEO Success Stories, B2B SaaS SEO Case Study, E-commerce SEO Growth, ROI campaigns Andhra Pradesh',
+      'Marketing Case Studies, SEO Success Stories, B2B SaaS SEO Case Study, E-commerce SEO Growth Hyderabad, ROI campaigns',
+    schema: {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      '@id': `${SITE.url}/case-studies#webpage`,
+      name: 'Case Studies - Momentrix Media',
+      description: 'Read our digital marketing, SEO, and web development case studies.',
+      url: `${SITE.url}/case-studies`,
+      publisher: {
+        '@type': 'Organization',
+        name: 'Momentrix Media',
+        logo: {
+          '@type': 'ImageObject',
+          url: SITE.defaultImage,
+        },
+      },
+    },
   },
   {
     path: '/blog',
     title: 'Digital Marketing & SEO Insights Blog',
     description:
-      'Stay ahead of search-algorithm changes and performance-marketing shifts. Read the latest SEO trends, Meta ad strategies, and automation guides from Momentrix Media.',
+      'Stay ahead of search algorithm changes and performance marketing shifts. Read the latest SEO trends, Meta ad strategies, and automation guides.',
     keywords:
-      'Momentrix Media Blog, Digital Marketing Trends, SEO Blog, Meta Ads Strategy, Content Marketing Insights',
+      'Momentrix Media Blog, Digital Marketing Trends, SEO Blog Hyderabad, Meta Ads Strategy, Content Marketing Insights',
+    schema: {
+      '@context': 'https://schema.org',
+      '@type': 'Blog',
+      '@id': `${SITE.url}/blog#blog`,
+      name: 'Momentrix Media Insights Blog',
+      description: 'Latest trends, strategies, and insights from our team of digital marketing experts.',
+      url: `${SITE.url}/blog`,
+      publisher: {
+        '@type': 'Organization',
+        name: 'Momentrix Media',
+        logo: {
+          '@type': 'ImageObject',
+          url: SITE.defaultImage,
+        },
+      },
+      blogPost: [
+        {
+          '@type': 'BlogPosting',
+          headline: '10 SEO Trends to Watch in 2026',
+          url: `${SITE.url}/blog`,
+          datePublished: '2025-10-12',
+          author: {
+            '@type': 'Person',
+            name: 'Alex Morgan',
+          },
+          description: 'Search algorithms are evolving faster than ever. Stay ahead of the curve with these top 10 SEO trends that will dominate this year.',
+        },
+        {
+          '@type': 'BlogPosting',
+          headline: 'Maximizing ROI with TikTok Ads',
+          url: `${SITE.url}/blog`,
+          datePublished: '2025-10-05',
+          author: {
+            '@type': 'Person',
+            name: 'Sarah Jenkins',
+          },
+          description: 'Discover how brands are leveraging short-form video content to drive unprecedented conversion rates on TikTok.',
+        },
+      ],
+    },
   },
   {
     path: '/careers',
-    title: 'Careers & Digital Marketing Jobs in Guntur',
+    title: 'Careers & Digital Marketing Jobs',
     description:
-      'Join the Momentrix Media team in Guntur. We are hiring SEO specialists, paid-performance managers, developers, and designers to scale brand equity.',
+      'Join the Momentrix Media team. We are looking for talented SEO specialists, paid performance ads managers, developers, and designers to scale brand equity.',
     keywords:
-      'Digital Marketing Careers Guntur, SEO Jobs Andhra Pradesh, Join Momentrix Media, Developer Jobs Guntur, Performance Marketing Roles',
+      'Digital Marketing Careers, SEO Jobs Hyderabad, Join Momentrix Media, Remote Developer Jobs, Performance Marketing Roles',
+    schema: {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      '@id': `${SITE.url}/careers#webpage`,
+      name: 'Careers - Momentrix Media',
+      description: 'Join our team of creative, analytical, and growth-oriented professionals.',
+      url: `${SITE.url}/careers`,
+      publisher: {
+        '@type': 'Organization',
+        name: 'Momentrix Media',
+        logo: {
+          '@type': 'ImageObject',
+          url: SITE.defaultImage,
+        },
+      },
+    },
   },
   {
     path: '/contact',
     title: 'Book a Consultation | Contact Us',
     description:
-      'Get in touch with Momentrix Media in Guntur. Request a free growth-strategy consultation for AI automation, SEO, PPC ads, or web development.',
+      'Get in touch with Momentrix Media today. Request a free growth strategy consultation for AI automation, SEO, PPC ads, or web development services.',
     keywords:
-      'Contact Momentrix Media, Digital Marketing Consultation Guntur, Hire SEO Expert Guntur, Web Development Agency Andhra Pradesh',
+      'Contact Momentrix Media, Digital Marketing Consultation, Hire SEO Expert Hyderabad, Web Development Agency Inquiry',
+    schema: {
+      '@context': 'https://schema.org',
+      '@type': 'ContactPage',
+      '@id': `${SITE.url}/contact#webpage`,
+      name: 'Contact Us - Momentrix Media',
+      description: 'Book a free digital growth strategy session with our technical marketing team.',
+      url: `${SITE.url}/contact`,
+      mainEntity: {
+        '@type': 'Organization',
+        name: 'Momentrix Media',
+        telephone: SITE.phone,
+        email: 'contact@momentrixmedia.com',
+      },
+    },
   },
   {
     path: '/explore',
     title: 'Explore Solutions & Interactive Simulators',
     description:
-      'Interact with our custom tool simulators: AI workflow bots, SEO keywords, bid optimizers, responsiveness builders, and content generators in real time.',
+      'Interact with our custom tool simulators: AI workflow bots, SEO keywords, bid optimizers, responsiveness builders, and content generators in real-time.',
     keywords:
-      'Interactive Marketing Tools, SEO Simulator, AI Workflow Automation Tool, CPC Bidding Calculator',
+      'Interactive Marketing Tools, SEO Simulator, AI Workflow Automation Tool Hyderabad, CPC Bidding Calculator',
+    schema: {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      '@id': `${SITE.url}/explore#webpage`,
+      name: 'Explore Solutions - Momentrix Media',
+      description: 'Interactive workspace showcasing our AI automation, digital marketing, SEO, and web development simulators.',
+      url: `${SITE.url}/explore`,
+      publisher: {
+        '@type': 'Organization',
+        name: 'Momentrix Media',
+        logo: {
+          '@type': 'ImageObject',
+          url: SITE.defaultImage,
+        },
+      },
+    },
   },
   {
     path: '/privacy-policy',
     title: 'Privacy Policy',
     description:
-      'Read the Privacy Policy of Momentrix Media. Learn how we protect your personal data, privacy settings, and security standards.',
+      'Read the Privacy Policy of Momentrix Media. Learn about our commitments to protecting your personal data, privacy settings, and security standards.',
     keywords:
       'Privacy Policy Momentrix Media, Data Protection, Cookie Policy, Compliance Guntur',
+    schema: {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      '@id': `${SITE.url}/privacy-policy#webpage`,
+      name: 'Privacy Policy - Momentrix Media',
+      description: 'Learn about our data collection and privacy practices.',
+      url: `${SITE.url}/privacy-policy`,
+      publisher: {
+        '@type': 'Organization',
+        name: 'Momentrix Media',
+        logo: {
+          '@type': 'ImageObject',
+          url: SITE.defaultImage,
+        },
+      },
+    },
   },
   {
     path: '/terms-of-service',
     title: 'Terms of Service',
     description:
-      'Read the Terms of Service of Momentrix Media. Review intellectual-property rights, liability limitations, and governing laws.',
+      'Read the Terms of Service of Momentrix Media. Review intellectual property rights, liability limitations, and governing laws.',
     keywords:
-      'Terms of Service Momentrix Media, Terms of Use, Service Agreement, Legal Guntur',
+      'Terms of Service Momentrix Media, Terms of Use, Service Agreement, Web Terms, Legal Guntur',
+    schema: {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      '@id': `${SITE.url}/terms-of-service#webpage`,
+      name: 'Terms of Service - Momentrix Media',
+      description: 'Read our terms of service and website usage rules.',
+      url: `${SITE.url}/terms-of-service`,
+      publisher: {
+        '@type': 'Organization',
+        name: 'Momentrix Media',
+        logo: {
+          '@type': 'ImageObject',
+          url: SITE.defaultImage,
+        },
+      },
+    },
   },
 ];

@@ -12,6 +12,7 @@ const SocialService: React.FC = () => {
     schemaMarkup: {
       "@context": "https://schema.org",
       "@type": "Service",
+      "@id": "https://www.momentrixmedia.com/services/social#service",
       "name": "Social Media Marketing Services",
       "description": "Professional Social Media Marketing Services in Hyderabad, building brand communities, managing page updates, running Meta ads campaigns, and growing organic engagement.",
       "provider": {

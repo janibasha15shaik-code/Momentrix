@@ -11,6 +11,7 @@ const Portfolio: React.FC = () => {
     schemaMarkup: {
       "@context": "https://schema.org",
       "@type": "WebPage",
+      "@id": "https://www.momentrixmedia.com/portfolio#webpage",
       "name": "Portfolio - Momentrix Media",
       "description": "Explore our digital marketing, SEO, and web development case studies and projects.",
       "url": "https://www.momentrixmedia.com/portfolio",
