@@ -13,7 +13,7 @@ interface ServiceItem {
 
 const Services: React.FC = () => {
   useSEO({
-    title: 'Our Services & Digital Capabilities',
+    title: 'Services | Our Digital Capabilities',
     description: 'Explore Momentrix Media capabilities in Guntur & Hyderabad: AI automation, search engine optimization (SEO), PPC search ads, web development, performance marketing, social media, and email marketing.',
     keywords: 'Digital Marketing Services Guntur, AI Automation Services, SEO Services in Hyderabad, PPC Management, Web Development Company Guntur, Social Media Marketing',
     schemaMarkup: {

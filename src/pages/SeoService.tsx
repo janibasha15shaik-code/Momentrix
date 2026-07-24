@@ -6,7 +6,7 @@ import { Search, TrendingUp, Target, Shield, Star, CheckCircle2, X } from 'lucid
 
 const SeoService: React.FC = () => {
   useSEO({
-    title: 'SEO Services in Hyderabad & Guntur',
+    title: 'SEO Services | Hyderabad & Guntur',
     description: 'Momentrix Media provides professional SEO Services in Hyderabad and Guntur. We build domain authority blueprints, optimize web speed, and capture high-intent traffic.',
     keywords: 'SEO Services in Hyderabad, Search Engine Optimization Guntur, Technical SEO Audit, Local SEO Agency, Domain Authority link building',
     schemaMarkup: {

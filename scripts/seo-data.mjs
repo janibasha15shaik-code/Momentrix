@@ -123,6 +123,61 @@ export const ORG_GRAPH = {
         'query-input': 'required name=search_term_string',
       },
     },
+    {
+      '@type': 'ItemList',
+      '@id': `${SITE.url}/#sitenavigation`,
+      name: 'Main Navigation Menu',
+      itemListElement: [
+        {
+          '@type': 'SiteNavigationElement',
+          position: 1,
+          name: 'About Us',
+          url: `${SITE.url}/about`
+        },
+        {
+          '@type': 'SiteNavigationElement',
+          position: 2,
+          name: 'Our Services',
+          url: `${SITE.url}/services`
+        },
+        {
+          '@type': 'SiteNavigationElement',
+          position: 3,
+          name: 'SEO Services',
+          url: `${SITE.url}/services/seo`
+        },
+        {
+          '@type': 'SiteNavigationElement',
+          position: 4,
+          name: 'Web Development',
+          url: `${SITE.url}/services/web`
+        },
+        {
+          '@type': 'SiteNavigationElement',
+          position: 5,
+          name: 'Case Studies',
+          url: `${SITE.url}/case-studies`
+        },
+        {
+          '@type': 'SiteNavigationElement',
+          position: 6,
+          name: 'Careers',
+          url: `${SITE.url}/careers`
+        },
+        {
+          '@type': 'SiteNavigationElement',
+          position: 7,
+          name: 'Contact Us',
+          url: `${SITE.url}/contact`
+        },
+        {
+          '@type': 'SiteNavigationElement',
+          position: 8,
+          name: 'Blog',
+          url: `${SITE.url}/blog`
+        }
+      ]
+    },
   ],
 };
 
@@ -140,7 +195,7 @@ export const ROUTES = [
   },
   {
     path: '/about',
-    title: 'Our Story & Agency Core Values',
+    title: 'About Us | Our Story & Core Values',
     description:
       'Learn about Momentrix Media, a collective of digital innovators and data-driven strategists specializing in AI automation, SEO, and paid performance marketing.',
     keywords:
@@ -164,7 +219,7 @@ export const ROUTES = [
   },
   {
     path: '/services',
-    title: 'Our Services & Digital Capabilities',
+    title: 'Services | Our Digital Capabilities',
     description:
       'Explore Momentrix Media capabilities in Guntur & Hyderabad: AI automation, search engine optimization (SEO), PPC search ads, web development, performance marketing, social media, and email marketing.',
     keywords:
@@ -184,7 +239,7 @@ export const ROUTES = [
   },
   {
     path: '/services/seo',
-    title: 'SEO Services in Hyderabad & Guntur',
+    title: 'SEO Services | Hyderabad & Guntur',
     description:
       'Momentrix Media provides professional SEO Services in Hyderabad and Guntur. We build domain authority blueprints, optimize web speed, and capture high-intent traffic.',
     keywords:
@@ -239,7 +294,7 @@ export const ROUTES = [
   },
   {
     path: '/services/social',
-    title: 'Social Media Marketing Services in Guntur & Hyderabad',
+    title: 'Social Media Marketing | Guntur & Hyderabad',
     description:
       'Momentrix Media runs elite Social Media Marketing in Guntur & Hyderabad. We build brand loyalty and high-engagement ad campaigns on Instagram, Facebook, and LinkedIn.',
     keywords:
@@ -294,7 +349,7 @@ export const ROUTES = [
   },
   {
     path: '/services/web',
-    title: 'Web Development Services in Hyderabad & Guntur',
+    title: 'Web Development | Hyderabad & Guntur',
     description:
       'Momentrix Media is a top-tier Web Development Company in Hyderabad. We engineer high-performance web systems, custom portals, E-commerce web engines, and API integrations.',
     keywords:
@@ -349,7 +404,7 @@ export const ROUTES = [
   },
   {
     path: '/services/performance',
-    title: 'Paid Acquisition & PPC Management in Guntur & Hyderabad',
+    title: 'Performance Marketing | PPC Management',
     description:
       'Momentrix Media is a top PPC management agency in Guntur & Hyderabad. Scale revenue with high-ROAS Meta Ads, Google Ads, and performance-marketing funnels.',
     keywords:
@@ -404,7 +459,7 @@ export const ROUTES = [
   },
   {
     path: '/portfolio',
-    title: 'Our Case Studies & Creative Portfolio',
+    title: 'Portfolio | Creative Work & Projects',
     description:
       'Explore the Momentrix Media project portfolio. Read how our data-driven strategies and engineering systems scaled traffic, acquisition, and conversion metrics.',
     keywords:
@@ -428,7 +483,7 @@ export const ROUTES = [
   },
   {
     path: '/case-studies',
-    title: 'Marketing Case Studies & SEO Success Stories',
+    title: 'Case Studies | Client Success Stories',
     description:
       'Read our digital marketing and SEO case studies. Learn how we scale organic traffic, optimize search campaigns, and decrease acquisition costs for brands.',
     keywords:
@@ -452,7 +507,7 @@ export const ROUTES = [
   },
   {
     path: '/blog',
-    title: 'Digital Marketing & SEO Insights Blog',
+    title: 'Blog | SEO & Digital Marketing Insights',
     description:
       'Stay ahead of search algorithm changes and performance marketing shifts. Read the latest SEO trends, Meta ad strategies, and automation guides.',
     keywords:
@@ -500,7 +555,7 @@ export const ROUTES = [
   },
   {
     path: '/careers',
-    title: 'Careers & Digital Marketing Jobs',
+    title: 'Careers | Join the Momentrix Media Team',
     description:
       'Join the Momentrix Media team. We are looking for talented SEO specialists, paid performance ads managers, developers, and designers to scale brand equity.',
     keywords:
@@ -524,7 +579,7 @@ export const ROUTES = [
   },
   {
     path: '/contact',
-    title: 'Book a Consultation | Contact Us',
+    title: 'Contact Us | Book a Free Consultation',
     description:
       'Get in touch with Momentrix Media today. Request a free growth strategy consultation for AI automation, SEO, PPC ads, or web development services.',
     keywords:

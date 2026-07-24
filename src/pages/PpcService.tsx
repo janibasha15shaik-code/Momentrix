@@ -6,7 +6,7 @@ import { TrendingUp, BarChart3, Target, Sparkles, DollarSign, CheckCircle2, X } 
 
 const PpcService: React.FC = () => {
   useSEO({
-    title: 'Paid Acquisition & PPC Management in Guntur & Hyderabad',
+    title: 'Performance Marketing | PPC Management',
     description: 'Momentrix Media is a top PPC management agency in Guntur & Hyderabad. Scale revenue with high-ROAS Meta Ads, Google Ads, and performance-marketing funnels.',
     keywords: 'PPC Services in Guntur, PPC Services in Hyderabad, Paid Acquisition Agency, Meta Ads Specialist, Google Ads Management Andhra Pradesh, High ROAS Campaigns',
     schemaMarkup: {

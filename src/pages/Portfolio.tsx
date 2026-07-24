@@ -5,7 +5,7 @@ import { ArrowUpRight } from 'lucide-react';
 
 const Portfolio: React.FC = () => {
   useSEO({
-    title: 'Our Case Studies & Creative Portfolio',
+    title: 'Portfolio | Creative Work & Projects',
     description: 'Explore the Momentrix Media project portfolio. Read how our data-driven strategies and engineering systems scaled traffic, acquisition, and conversion metrics.',
     keywords: 'Momentrix Media Portfolio, Marketing Case Studies, Web Development Projects, SEO Success Stories Hyderabad, High-ROAS campaigns',
     schemaMarkup: {

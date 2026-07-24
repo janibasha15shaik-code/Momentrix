@@ -5,7 +5,7 @@ import { Mail, MapPin, Phone, Send, CheckCircle2, X,CalendarDays, } from 'lucide
 
 const Contact: React.FC = () => {
   useSEO({
-    title: 'Book a Consultation | Contact Us',
+    title: 'Contact Us | Book a Free Consultation',
     description: 'Get in touch with Momentrix Media today. Request a free growth strategy consultation for AI automation, SEO, PPC ads, or web development services.',
     keywords: 'Contact Momentrix Media, Digital Marketing Consultation, Hire SEO Expert Hyderabad, Web Development Agency Inquiry',
     schemaMarkup: {

@@ -5,7 +5,7 @@ import { ArrowRight, Calendar, User, Clock } from 'lucide-react';
 
 const Blog: React.FC = () => {
   useSEO({
-    title: 'Digital Marketing & SEO Insights Blog',
+    title: 'Blog | SEO & Digital Marketing Insights',
     description: 'Stay ahead of search algorithm changes and performance marketing shifts. Read the latest SEO trends, Meta ad strategies, and automation guides.',
     keywords: 'Momentrix Media Blog, Digital Marketing Trends, SEO Blog Hyderabad, Meta Ads Strategy, Content Marketing Insights',
     schemaMarkup: {

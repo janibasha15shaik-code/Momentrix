@@ -6,7 +6,7 @@ import { Megaphone, Heart, Share2, Sparkles, CheckCircle2, X } from 'lucide-reac
 
 const SocialService: React.FC = () => {
   useSEO({
-    title: 'Social Media Marketing Services in Guntur & Hyderabad',
+    title: 'Social Media Marketing | Guntur & Hyderabad',
     description: 'Momentrix Media runs elite Social Media Marketing in Guntur & Hyderabad. We build brand loyalty and high-engagement ad campaigns on Instagram, Facebook, and LinkedIn.',
     keywords: 'Social Media Marketing Services Guntur, Social Media Agency Hyderabad, Instagram Marketing, Facebook Campaigns Guntur, Brand Engagement Andhra Pradesh',
     schemaMarkup: {

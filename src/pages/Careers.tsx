@@ -17,7 +17,7 @@ interface JobDetail {
 
 const Careers: React.FC = () => {
   useSEO({
-    title: 'Careers & Digital Marketing Jobs',
+    title: 'Careers | Join the Momentrix Media Team',
     description: 'Join the Momentrix Media team. We are looking for talented SEO specialists, paid performance ads managers, developers, and designers to scale brand equity.',
     keywords: 'Digital Marketing Careers, SEO Jobs Hyderabad, Join Momentrix Media, Remote Developer Jobs, Performance Marketing Roles',
     schemaMarkup: {

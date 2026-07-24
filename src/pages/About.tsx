@@ -5,7 +5,7 @@ import { CheckCircle2, Users, Target, Zap } from 'lucide-react';
 
 const About: React.FC = () => {
   useSEO({
-    title: 'Our Story & Agency Core Values',
+    title: 'About Us | Our Story & Core Values',
     description: 'Learn about Momentrix Media, a collective of digital innovators and data-driven strategists specializing in AI automation, SEO, and paid performance marketing.',
     keywords: 'About Momentrix Media, Digital Marketing Experts, AI Automation Team Hyderabad, Agency Core Values',
     schemaMarkup: {

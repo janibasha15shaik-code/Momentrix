@@ -6,7 +6,7 @@ import { Smartphone, Code, Cpu, Database, CheckCircle2, X } from 'lucide-react';
 
 const WebService: React.FC = () => {
   useSEO({
-    title: 'Web Development Services in Hyderabad & Guntur',
+    title: 'Web Development | Hyderabad & Guntur',
     description: 'Momentrix Media is a top-tier Web Development Company in Hyderabad. We engineer high-performance web systems, custom portals, E-commerce web engines, and API integrations.',
     keywords: 'Web Development Company in Hyderabad, Web Development Services, E-commerce Web Developer, React Next.js Developer Hyderabad, Responsive Web Design',
     schemaMarkup: {

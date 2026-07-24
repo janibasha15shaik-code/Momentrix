@@ -86,10 +86,15 @@ function buildHead(route) {
 }
 
 function buildFallbackNav() {
-  let nav = `\n    <!-- Fallback static navigation for non-JS crawlers -->\n    <noscript>\n      <nav style="display:none;">\n`;
+  let nav = `\n    <!-- Fallback static navigation for non-JS crawlers -->\n    <noscript>\n      <nav style="display:none;" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">\n`;
   for (const route of ROUTES) {
+    if (route.path === '/privacy-policy' || route.path === '/terms-of-service') {
+      // Exclude utility/policy pages from main crawler sitelinks navigation
+      continue;
+    }
     const name = route.path === '/' ? 'Home' : route.title.split(' | ')[0];
-    nav += `        <a href="${route.path}">${name}</a>\n`;
+    const canonical = canonicalFor(route.path);
+    nav += `        <a itemprop="url" href="${canonical}"><span itemprop="name">${name}</span></a>\n`;
   }
   nav += `      </nav>\n    </noscript>\n  `;
   return nav;

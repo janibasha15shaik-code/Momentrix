@@ -5,7 +5,7 @@ import { ArrowRight } from 'lucide-react';
 
 const CaseStudies: React.FC = () => {
   useSEO({
-    title: 'Marketing Case Studies & SEO Success Stories',
+    title: 'Case Studies | Client Success Stories',
     description: 'Read our digital marketing and SEO case studies. Learn how we scale organic traffic, optimize search campaigns, and decrease acquisition costs for brands.',
     keywords: 'Marketing Case Studies, SEO Success Stories, B2B SaaS SEO Case Study, E-commerce SEO Growth Hyderabad, ROI campaigns',
     schemaMarkup: {

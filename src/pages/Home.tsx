@@ -129,6 +129,61 @@ const Home: React.FC = () => {
             "target": "https://www.momentrixmedia.com/explore?q={search_term_string}",
             "query-input": "required name=search_term_string"
           }
+        },
+        {
+          "@type": "ItemList",
+          "@id": "https://www.momentrixmedia.com/#sitenavigation",
+          "name": "Main Navigation Menu",
+          "itemListElement": [
+            {
+              "@type": "SiteNavigationElement",
+              "position": 1,
+              "name": "About Us",
+              "url": "https://www.momentrixmedia.com/about"
+            },
+            {
+              "@type": "SiteNavigationElement",
+              "position": 2,
+              "name": "Our Services",
+              "url": "https://www.momentrixmedia.com/services"
+            },
+            {
+              "@type": "SiteNavigationElement",
+              "position": 3,
+              "name": "SEO Services",
+              "url": "https://www.momentrixmedia.com/services/seo"
+            },
+            {
+              "@type": "SiteNavigationElement",
+              "position": 4,
+              "name": "Web Development",
+              "url": "https://www.momentrixmedia.com/services/web"
+            },
+            {
+              "@type": "SiteNavigationElement",
+              "position": 5,
+              "name": "Case Studies",
+              "url": "https://www.momentrixmedia.com/case-studies"
+            },
+            {
+              "@type": "SiteNavigationElement",
+              "position": 6,
+              "name": "Careers",
+              "url": "https://www.momentrixmedia.com/careers"
+            },
+            {
+              "@type": "SiteNavigationElement",
+              "position": 7,
+              "name": "Contact Us",
+              "url": "https://www.momentrixmedia.com/contact"
+            },
+            {
+              "@type": "SiteNavigationElement",
+              "position": 8,
+              "name": "Blog",
+              "url": "https://www.momentrixmedia.com/blog"
+            }
+          ]
         }
       ]
     }
