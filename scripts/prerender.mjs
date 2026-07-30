@@ -196,8 +196,12 @@ function main() {
   try {
     const sitemapXml = generateSitemap();
     writeFileSync(join(DIST, 'sitemap.xml'), sitemapXml);
-    const PUBLIC_DIR = join(__dirname, '..', 'public');
-    writeFileSync(join(PUBLIC_DIR, 'sitemap.xml'), sitemapXml);
+    try {
+      const PUBLIC_DIR = join(__dirname, '..', 'public');
+      writeFileSync(join(PUBLIC_DIR, 'sitemap.xml'), sitemapXml);
+    } catch {
+      // Ignored in CI read-only environments
+    }
     console.log(`[prerender] generated dynamic sitemap.xml with ${ROUTES.length} routes`);
   } catch (err) {
     console.error(`[prerender] failed to generate sitemap.xml:`, err);
