@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useSEO } from '../hooks/useSEO';
-import { Search, TrendingUp, Target, Shield, Star, CheckCircle2, X } from 'lucide-react';
+import { Search, TrendingUp, Target, Shield, Star, CheckCircle2, X, ExternalLink, ArrowRight } from 'lucide-react';
 
 const SeoService: React.FC = () => {
   useSEO({
@@ -105,6 +105,19 @@ const SeoService: React.FC = () => {
                 <Link to="/contact" className="px-8 py-4 rounded-full bg-primary-600 text-white font-bold hover:bg-primary-500 transition-colors shadow-lg shadow-primary-600/30">
                   Request Free SEO Audit
                 </Link>
+                <Link to="/case-studies" className="px-8 py-4 rounded-full bg-slate-800 text-slate-200 font-bold hover:bg-slate-700 transition-colors border border-slate-700">
+                  View SEO Case Studies
+                </Link>
+              </div>
+              <div className="mt-6 flex flex-wrap items-center gap-4 text-xs text-slate-400">
+                <span>Official Resources:</span>
+                <a href="https://developers.google.com/search" target="_blank" rel="noopener noreferrer" className="text-primary-400 hover:underline flex items-center gap-1">
+                  Google Search Central <ExternalLink className="w-3 h-3" />
+                </a>
+                <span>•</span>
+                <a href="https://schema.org" target="_blank" rel="noopener noreferrer" className="text-primary-400 hover:underline flex items-center gap-1">
+                  Schema.org Standards <ExternalLink className="w-3 h-3" />
+                </a>
               </div>
             </motion.div>
 
@@ -256,6 +269,40 @@ const SeoService: React.FC = () => {
               </div>
               <p className="text-[10px] text-slate-400 text-center">No commitment required. We deliver your full SEO index report in 24 hours.</p>
             </form>
+          </div>
+        </div>
+      </section>
+
+      {/* Related Growth Services & Insights (Internal Links) */}
+      <section className="py-16 bg-white dark:bg-dark border-t border-slate-200 dark:border-slate-800">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
+            <div>
+              <h3 className="text-2xl font-bold">Combine SEO with Full-Funnel Digital Solutions</h3>
+              <p className="text-sm text-slate-500 dark:text-slate-400">Maximize domain authority by connecting technical SEO with high-conversion web development and paid channels.</p>
+            </div>
+            <Link to="/services" className="text-primary-600 font-bold hover:underline inline-flex items-center gap-1.5 text-sm">
+              Explore All Services <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <Link to="/services/web" className="p-6 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-primary-500 transition-colors group">
+              <h4 className="font-bold text-base mb-2 group-hover:text-primary-600 transition-colors">Web Development →</h4>
+              <p className="text-xs text-slate-500 dark:text-slate-400">Pair SEO with lightning fast headless React/Vite web architecture.</p>
+            </Link>
+            <Link to="/services/performance" className="p-6 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-primary-500 transition-colors group">
+              <h4 className="font-bold text-base mb-2 group-hover:text-primary-600 transition-colors">PPC Performance →</h4>
+              <p className="text-xs text-slate-500 dark:text-slate-400">Drive immediate high-intent customer sales with Google Search Ads.</p>
+            </Link>
+            <Link to="/services/social" className="p-6 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-primary-500 transition-colors group">
+              <h4 className="font-bold text-base mb-2 group-hover:text-primary-600 transition-colors">Social Media Marketing →</h4>
+              <p className="text-xs text-slate-500 dark:text-slate-400">Amplify search content through Instagram and Meta audience targeting.</p>
+            </Link>
+            <Link to="/blog" className="p-6 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-primary-500 transition-colors group">
+              <h4 className="font-bold text-base mb-2 group-hover:text-primary-600 transition-colors">SEO Insights & Blog →</h4>
+              <p className="text-xs text-slate-500 dark:text-slate-400">Read our latest research guides on Google core updates and search algorithms.</p>
+            </Link>
           </div>
         </div>
       </section>

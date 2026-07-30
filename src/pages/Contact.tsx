@@ -96,8 +96,14 @@ const Contact: React.FC = () => {
                   <MapPin className="w-6 h-6" />
                 </div>
                 <div>
-                  {/* <h4 className="text-lg font-bold mb-1">Our Headquarters</h4> */}
-                  <p className="text-slate-600 dark:text-slate-400">Ground floor, 1-12, 25, 3rd Line, Chandramouli Nagar, Guntur, <br/>Andhra Pradesh 522007</p>
+                  <a 
+                    href="https://maps.google.com/?q=Ground+floor+1-12+25+3rd+Line+Chandramouli+Nagar+Guntur+Andhra+Pradesh+522007" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+                  >
+                    Ground floor, 1-12, 25, 3rd Line, Chandramouli Nagar, Guntur, <br/>Andhra Pradesh 522007
+                  </a>
                 </div>
               </div>
               
@@ -106,8 +112,12 @@ const Contact: React.FC = () => {
                   <Mail className="w-6 h-6" />
                 </div>
                 <div>
-                  {/* <h4 className="text-lg font-bold mb-1">Email Us</h4> */}
-                  <p className="text-slate-600 dark:text-slate-400">Info@momentrixmedia.com</p>
+                  <a 
+                    href="mailto:Info@momentrixmedia.com" 
+                    className="text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 font-semibold transition-colors"
+                  >
+                    Info@momentrixmedia.com
+                  </a>
                 </div>
               </div>
               
@@ -116,8 +126,16 @@ const Contact: React.FC = () => {
                   <Phone className="w-6 h-6" />
                 </div>
                 <div className="text-slate-600 dark:text-slate-400">
-                <p>+91 970-3468-919</p>
-                <p>+91 630-0140-031</p>
+                <p>
+                  <a href="tel:+919703468919" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                    +91 970-3468-919
+                  </a>
+                </p>
+                <p>
+                  <a href="tel:+916300140031" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                    +91 630-0140-031
+                  </a>
+                </p>
 
                 <div className="flex items-center gap-2 mt-1">
                   <CalendarDays className="w-4 h-4" />

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useSEO } from '../hooks/useSEO';
-import { Megaphone, Heart, Share2, Sparkles, CheckCircle2, X } from 'lucide-react';
+import { Megaphone, Heart, Share2, Sparkles, CheckCircle2, X, ExternalLink, ArrowRight } from 'lucide-react';
 
 const SocialService: React.FC = () => {
   useSEO({
@@ -104,6 +104,19 @@ const SocialService: React.FC = () => {
                 <Link to="/contact" className="px-8 py-4 rounded-full bg-pink-600 hover:bg-pink-500 text-white font-bold transition-colors shadow-lg shadow-pink-600/30">
                   Book A Social Discovery Session
                 </Link>
+                <Link to="/case-studies" className="px-8 py-4 rounded-full bg-slate-800 text-slate-200 font-bold hover:bg-slate-700 transition-colors border border-slate-700">
+                  View Social Case Studies
+                </Link>
+              </div>
+              <div className="mt-6 flex flex-wrap items-center gap-4 text-xs text-slate-400">
+                <span>Supported Advertising Hubs:</span>
+                <a href="https://www.facebook.com/business" target="_blank" rel="noopener noreferrer" className="text-pink-400 hover:underline flex items-center gap-1">
+                  Meta Business Suite <ExternalLink className="w-3 h-3" />
+                </a>
+                <span>•</span>
+                <a href="https://www.tiktok.com/business" target="_blank" rel="noopener noreferrer" className="text-pink-400 hover:underline flex items-center gap-1">
+                  TikTok Ads Hub <ExternalLink className="w-3 h-3" />
+                </a>
               </div>
             </motion.div>
 
@@ -258,6 +271,40 @@ const SocialService: React.FC = () => {
               </div>
               <p className="text-[10px] text-slate-400 text-center">We will conduct a complete meta-presence index of your brand within 24 hours.</p>
             </form>
+          </div>
+        </div>
+      </section>
+
+      {/* Related Growth Services & Insights (Internal Links) */}
+      <section className="py-16 bg-white dark:bg-dark border-t border-slate-200 dark:border-slate-800">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
+            <div>
+              <h3 className="text-2xl font-bold">Turn Social Audience Engagement into Direct Sales</h3>
+              <p className="text-sm text-slate-500 dark:text-slate-400">Connect your Instagram and Meta social campaigns directly with high-performance paid ad funnels and organic search.</p>
+            </div>
+            <Link to="/services" className="text-pink-600 font-bold hover:underline inline-flex items-center gap-1.5 text-sm">
+              Explore All Services <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <Link to="/services/performance" className="p-6 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-pink-500 transition-colors group">
+              <h4 className="font-bold text-base mb-2 group-hover:text-pink-600 transition-colors">PPC Performance Marketing →</h4>
+              <p className="text-xs text-slate-500 dark:text-slate-400">Scale paid Meta and Google ad ROI with data-driven audience retargeting.</p>
+            </Link>
+            <Link to="/services/seo" className="p-6 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-pink-500 transition-colors group">
+              <h4 className="font-bold text-base mb-2 group-hover:text-pink-600 transition-colors">SEO & Search Optimization →</h4>
+              <p className="text-xs text-slate-500 dark:text-slate-400">Build organic domain authority to capture long-term search interest.</p>
+            </Link>
+            <Link to="/services/web" className="p-6 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-pink-500 transition-colors group">
+              <h4 className="font-bold text-base mb-2 group-hover:text-pink-600 transition-colors">High-Speed Web Development →</h4>
+              <p className="text-xs text-slate-500 dark:text-slate-400">Convert social media traffic on custom fast-loading landing pages.</p>
+            </Link>
+            <Link to="/blog" className="p-6 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-pink-500 transition-colors group">
+              <h4 className="font-bold text-base mb-2 group-hover:text-pink-600 transition-colors">Social Strategy Insights →</h4>
+              <p className="text-xs text-slate-500 dark:text-slate-400">Read our guides on short-form video strategies and algorithm changes.</p>
+            </Link>
           </div>
         </div>
       </section>

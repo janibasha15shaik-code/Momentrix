@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { useSEO } from '../hooks/useSEO';
 import { ArrowRight } from 'lucide-react';
 
@@ -138,13 +139,33 @@ const CaseStudies: React.FC = () => {
                   </div>
 
                   <div>
-                    <button className="inline-flex items-center gap-2 text-primary-600 hover:text-orange-500 font-bold transition-colors group">
-                      Read Full Case Study <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                    </button>
+                    <Link 
+                      to={study.industry === "B2B SaaS" ? "/services/seo" : "/services/performance"} 
+                      className="inline-flex items-center gap-2 text-primary-600 hover:text-orange-500 font-bold transition-colors group"
+                    >
+                      Explore Service Blueprint ({study.industry === "B2B SaaS" ? "SEO & Content" : "PPC & Social"}) <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    </Link>
                   </div>
                 </div>
               </motion.div>
             ))}
+          </div>
+
+          {/* Bottom Consultation CTA */}
+          <div className="mt-20 p-10 rounded-3xl bg-slate-900 text-white text-center border border-slate-800 relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-r from-primary-600/10 via-transparent to-orange-500/10 pointer-events-none" />
+            <h3 className="text-3xl font-extrabold mb-4 relative z-10">Ready to replicate these results for your business?</h3>
+            <p className="text-slate-400 max-w-xl mx-auto mb-8 relative z-10 text-base">
+              Partner with our performance marketing and technical SEO team to scale revenue, decrease customer acquisition cost, and rank on search.
+            </p>
+            <div className="flex justify-center gap-4 relative z-10">
+              <Link to="/contact" className="px-8 py-4 rounded-full bg-primary-600 hover:bg-primary-500 text-white font-bold transition-all shadow-lg">
+                Book Growth Consultation
+              </Link>
+              <Link to="/services" className="px-8 py-4 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold transition-all border border-slate-700">
+                Browse All Services
+              </Link>
+            </div>
           </div>
         </div>
       </section>

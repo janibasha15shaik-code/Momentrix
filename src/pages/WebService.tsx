@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useSEO } from '../hooks/useSEO';
-import { Smartphone, Code, Cpu, Database, CheckCircle2, X } from 'lucide-react';
+import { Smartphone, Code, Cpu, Database, CheckCircle2, X, ExternalLink, ArrowRight } from 'lucide-react';
 
 const WebService: React.FC = () => {
   useSEO({
@@ -104,6 +104,19 @@ const WebService: React.FC = () => {
                 <Link to="/contact" className="px-8 py-4 rounded-full bg-primary-600 hover:bg-primary-500 text-white font-bold transition-colors shadow-lg shadow-primary-600/30">
                   Launch Your Web Project Today
                 </Link>
+                <Link to="/portfolio" className="px-8 py-4 rounded-full bg-slate-800 text-slate-200 font-bold hover:bg-slate-700 transition-colors border border-slate-700">
+                  Explore Web Portfolio
+                </Link>
+              </div>
+              <div className="mt-6 flex flex-wrap items-center gap-4 text-xs text-slate-400">
+                <span>Performance Benchmarks:</span>
+                <a href="https://pagespeed.web.dev" target="_blank" rel="noopener noreferrer" className="text-primary-400 hover:underline flex items-center gap-1">
+                  Google PageSpeed Insights <ExternalLink className="w-3 h-3" />
+                </a>
+                <span>•</span>
+                <a href="https://www.w3.org" target="_blank" rel="noopener noreferrer" className="text-primary-400 hover:underline flex items-center gap-1">
+                  W3C Web Standards <ExternalLink className="w-3 h-3" />
+                </a>
               </div>
             </motion.div>
 
@@ -240,6 +253,40 @@ const WebService: React.FC = () => {
               </div>
               <p className="text-[10px] text-slate-400 text-center">We will set up an engineering roadmap and complete architecture review within 24 hours.</p>
             </form>
+          </div>
+        </div>
+      </section>
+
+      {/* Related Growth Services & Insights (Internal Links) */}
+      <section className="py-16 bg-white dark:bg-dark border-t border-slate-200 dark:border-slate-800">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
+            <div>
+              <h3 className="text-2xl font-bold">Maximize Performance Across Search & Paid Channels</h3>
+              <p className="text-sm text-slate-500 dark:text-slate-400">Combine custom web development with search engine optimization and performance marketing funnels.</p>
+            </div>
+            <Link to="/services" className="text-primary-600 font-bold hover:underline inline-flex items-center gap-1.5 text-sm">
+              Explore All Services <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <Link to="/services/seo" className="p-6 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-primary-500 transition-colors group">
+              <h4 className="font-bold text-base mb-2 group-hover:text-primary-600 transition-colors">SEO & Search Optimization →</h4>
+              <p className="text-xs text-slate-500 dark:text-slate-400">Ensure your new web app ranks #1 on Google for high-value search keywords.</p>
+            </Link>
+            <Link to="/services/performance" className="p-6 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-primary-500 transition-colors group">
+              <h4 className="font-bold text-base mb-2 group-hover:text-primary-600 transition-colors">PPC Performance Campaigns →</h4>
+              <p className="text-xs text-slate-500 dark:text-slate-400">Drive instant user registrations and ecommerce sales via Google Ads.</p>
+            </Link>
+            <Link to="/portfolio" className="p-6 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-primary-500 transition-colors group">
+              <h4 className="font-bold text-base mb-2 group-hover:text-primary-600 transition-colors">Client Portfolio →</h4>
+              <p className="text-xs text-slate-500 dark:text-slate-400">Browse live custom web platforms and e-commerce portals we've built.</p>
+            </Link>
+            <Link to="/blog" className="p-6 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-primary-500 transition-colors group">
+              <h4 className="font-bold text-base mb-2 group-hover:text-primary-600 transition-colors">Web Speed & Tech Insights →</h4>
+              <p className="text-xs text-slate-500 dark:text-slate-400">Read our research on Core Web Vitals and React performance optimization.</p>
+            </Link>
           </div>
         </div>
       </section>

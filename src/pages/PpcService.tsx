@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useSEO } from '../hooks/useSEO';
-import { TrendingUp, BarChart3, Target, Sparkles, DollarSign, CheckCircle2, X } from 'lucide-react';
+import { TrendingUp, BarChart3, Target, Sparkles, DollarSign, CheckCircle2, X, ExternalLink, ArrowRight } from 'lucide-react';
 
 const PpcService: React.FC = () => {
   useSEO({
@@ -104,6 +104,19 @@ const PpcService: React.FC = () => {
                 <Link to="/contact" className="px-8 py-4 rounded-full bg-orange-600 hover:bg-orange-500 text-white font-bold transition-colors shadow-lg shadow-orange-600/30">
                   Scale Your Ad Campaigns Now
                 </Link>
+                <Link to="/case-studies" className="px-8 py-4 rounded-full bg-slate-800 text-slate-200 font-bold hover:bg-slate-700 transition-colors border border-slate-700">
+                  View Performance Case Studies
+                </Link>
+              </div>
+              <div className="mt-6 flex flex-wrap items-center gap-4 text-xs text-slate-400">
+                <span>Ad Partner Engines:</span>
+                <a href="https://ads.google.com" target="_blank" rel="noopener noreferrer" className="text-orange-400 hover:underline flex items-center gap-1">
+                  Google Ads Portal <ExternalLink className="w-3 h-3" />
+                </a>
+                <span>•</span>
+                <a href="https://www.facebook.com/business" target="_blank" rel="noopener noreferrer" className="text-orange-400 hover:underline flex items-center gap-1">
+                  Meta Ads Manager <ExternalLink className="w-3 h-3" />
+                </a>
               </div>
             </motion.div>
 
@@ -255,6 +268,40 @@ const PpcService: React.FC = () => {
               </div>
               <p className="text-[10px] text-slate-400 text-center">We will conduct a complete meta-presence index of your brand within 24 hours.</p>
             </form>
+          </div>
+        </div>
+      </section>
+
+      {/* Related Growth Services & Insights (Internal Links) */}
+      <section className="py-16 bg-white dark:bg-dark border-t border-slate-200 dark:border-slate-800">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
+            <div>
+              <h3 className="text-2xl font-bold">Maximize Campaign ROI Across All Customer Touchpoints</h3>
+              <p className="text-sm text-slate-500 dark:text-slate-400">Combine paid ad acquisition with long-term organic search rankings and custom landing pages.</p>
+            </div>
+            <Link to="/services" className="text-orange-600 font-bold hover:underline inline-flex items-center gap-1.5 text-sm">
+              Explore All Services <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <Link to="/services/social" className="p-6 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-orange-500 transition-colors group">
+              <h4 className="font-bold text-base mb-2 group-hover:text-orange-600 transition-colors">Social Media Marketing →</h4>
+              <p className="text-xs text-slate-500 dark:text-slate-400">Scale organic brand credibility alongside paid Meta and Instagram ads.</p>
+            </Link>
+            <Link to="/services/seo" className="p-6 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-orange-500 transition-colors group">
+              <h4 className="font-bold text-base mb-2 group-hover:text-orange-600 transition-colors">SEO & Search Engine Blueprint →</h4>
+              <p className="text-xs text-slate-500 dark:text-slate-400">Capture non-paid high-intent organic search volume on top keywords.</p>
+            </Link>
+            <Link to="/services/web" className="p-6 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-orange-500 transition-colors group">
+              <h4 className="font-bold text-base mb-2 group-hover:text-orange-600 transition-colors">High-Converting Landing Pages →</h4>
+              <p className="text-xs text-slate-500 dark:text-slate-400">Build optimized React landing pages designed to maximize ad ROAS.</p>
+            </Link>
+            <Link to="/blog" className="p-6 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-orange-500 transition-colors group">
+              <h4 className="font-bold text-base mb-2 group-hover:text-orange-600 transition-colors">Performance Marketing Insights →</h4>
+              <p className="text-xs text-slate-500 dark:text-slate-400">Read our guides on audience retargeting and attribution modeling.</p>
+            </Link>
           </div>
         </div>
       </section>

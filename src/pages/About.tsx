@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { useSEO } from '../hooks/useSEO';
 import { CheckCircle2, Users, Target, Zap } from 'lucide-react';
 
@@ -44,7 +45,7 @@ const About: React.FC = () => {
                 We are a collective of digital innovators, creative thinkers, and data-driven strategists dedicated to transforming brands in the digital space.
               </p>
               
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-4 mb-8">
                 {[
                   'Data-Driven Decision Making',
                   'Award-Winning Creative Team',
@@ -58,6 +59,15 @@ const About: React.FC = () => {
                     <span className="text-slate-700 dark:text-slate-300 font-medium">{item}</span>
                   </div>
                 ))}
+              </div>
+
+              <div className="flex flex-wrap gap-4">
+                <Link to="/services" className="px-6 py-3 rounded-full bg-primary-600 hover:bg-primary-700 text-white font-bold transition-colors">
+                  View Our Capabilities
+                </Link>
+                <Link to="/careers" className="px-6 py-3 rounded-full bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 font-bold transition-colors">
+                  Join Our Team
+                </Link>
               </div>
             </motion.div>
             
@@ -92,7 +102,7 @@ const About: React.FC = () => {
             <h3 className="text-3xl md:text-5xl font-bold mb-6">What Drives Us Forward</h3>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
             {[
               { icon: <Users className="w-8 h-8 text-blue-500" />, title: 'Collaboration', desc: 'We believe in working closely with our clients as an extension of their team, fostering open communication and shared goals.' },
               { icon: <Target className="w-8 h-8 text-primary-500" />, title: 'Excellence', desc: 'We are committed to delivering the highest quality of work, constantly pushing the boundaries of what is possible in digital marketing.' },
@@ -113,6 +123,16 @@ const About: React.FC = () => {
                 <p className="text-slate-600 dark:text-slate-400">{value.desc}</p>
               </motion.div>
             ))}
+          </div>
+
+          <div className="p-10 rounded-3xl bg-slate-900 text-white flex flex-col md:flex-row items-center justify-between gap-6 border border-slate-800">
+            <div>
+              <h3 className="text-2xl font-bold mb-2">Want to elevate your brand presence?</h3>
+              <p className="text-slate-400 text-sm">Discover how our team can help you build market dominance across all digital channels.</p>
+            </div>
+            <Link to="/contact" className="px-8 py-4 rounded-full bg-primary-600 hover:bg-primary-500 text-white font-bold transition-all whitespace-nowrap">
+              Book A Strategy Session
+            </Link>
           </div>
         </div>
       </section>
