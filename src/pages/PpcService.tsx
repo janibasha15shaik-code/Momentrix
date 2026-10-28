@@ -1,75 +1,53 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { useSEO } from '../hooks/useSEO';
 import { TrendingUp, BarChart3, Target, Sparkles, DollarSign, CheckCircle2, X, ExternalLink, ArrowRight } from 'lucide-react';
 
 const PpcService: React.FC = () => {
-  useSEO({
-    title: 'Performance Marketing | PPC Management',
-    description: 'Momentrix Media is a top PPC management agency in Guntur & Hyderabad. Scale revenue with high-ROAS Meta Ads, Google Ads, and performance-marketing funnels.',
-    keywords: 'PPC Services in Guntur, PPC Services in Hyderabad, Paid Acquisition Agency, Meta Ads Specialist, Google Ads Management Andhra Pradesh, High ROAS Campaigns',
-    schemaMarkup: {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      "@id": "https://www.momentrixmedia.com/services/performance#service",
-      "name": "Paid Acquisition & PPC Management Services",
-      "description": "High-ROAS Meta ads, Google ads, and conversion optimization performance marketing services.",
-      "provider": {
-        "@type": "Organization",
-        "name": "Momentrix Media",
-        "url": "https://www.momentrixmedia.com"
-      },
-      "areaServed": "Hyderabad, Guntur, India",
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "PPC & Acquisition Capabilities",
-        "itemListElement": [
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Google Ads & PPC Search Campaigns"
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Meta Ads & Social Targeting"
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "High Converting Landing Page Optimization"
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Remarketing & Attribution Tracking"
-            }
-          }
-        ]
-      }
-    }
-  });
 
   const [adBudget, setAdBudget] = useState('');
   const [email, setEmail] = useState('');
   const [showSuccess, setShowSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setAdBudget('');
-    setEmail('');
-    setShowSuccess(true);
-    setTimeout(() => {
-      setShowSuccess(false);
-    }, 5000);
+    setLoading(true);
+    setError('');
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          firstName: 'PPC Client',
+          lastName: '',
+          email,
+          service: 'Performance Marketing (Google & Meta Ads)',
+          message: `Campaign scaling inquiry. Stated monthly ad budget: ${adBudget}`,
+        }),
+      });
+
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to submit campaign request.');
+      }
+
+      setAdBudget('');
+      setEmail('');
+      setShowSuccess(true);
+      setTimeout(() => {
+        setShowSuccess(false);
+      }, 6000);
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : 'Something went wrong. Please try again.';
+      setError(msg);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -244,29 +222,52 @@ const PpcService: React.FC = () => {
             </div>
 
             <form onSubmit={handleSubmit} className="p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl flex flex-col gap-6">
-              <h4 className="font-bold text-xl">Let's Scale Your Acquisition Funnel</h4>
+              <h3 className="font-bold text-xl">Let's Scale Your Acquisition Funnel</h3>
               <div className="space-y-4">
-                <input 
-                  type="text" 
-                  placeholder="Your Monthly Ad Budget" 
-                  required
-                  value={adBudget}
-                  onChange={(e) => setAdBudget(e.target.value)}
-                  className="w-full p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-transparent text-sm" 
-                />
-                <input 
-                  type="email" 
-                  placeholder="Your Business Email" 
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-transparent text-sm" 
-                />
-                <button type="submit" className="w-full py-4 rounded-xl bg-orange-600 hover:bg-orange-700 text-white font-bold transition-colors">
-                  Submit Campaign Scaling Request
+                <div>
+                  <label htmlFor="ppc-ad-budget" className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
+                    Monthly Ad Budget / Target <span className="text-red-500">*</span>
+                  </label>
+                  <input 
+                    id="ppc-ad-budget"
+                    type="text" 
+                    placeholder="e.g. ₹50,000 - ₹2,00,000 / month" 
+                    required
+                    value={adBudget}
+                    onChange={(e) => setAdBudget(e.target.value)}
+                    disabled={loading}
+                    className="w-full p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-transparent text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 disabled:opacity-50" 
+                  />
+                </div>
+                <div>
+                  <label htmlFor="ppc-email" className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
+                    Work Email <span className="text-red-500">*</span>
+                  </label>
+                  <input 
+                    id="ppc-email"
+                    type="email" 
+                    placeholder="you@company.com" 
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    disabled={loading}
+                    className="w-full p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-transparent text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 disabled:opacity-50" 
+                  />
+                </div>
+
+                {error && (
+                  <p role="alert" className="text-xs text-red-500 font-semibold">{error}</p>
+                )}
+
+                <button 
+                  type="submit" 
+                  disabled={loading}
+                  className="w-full py-4 rounded-xl bg-orange-600 hover:bg-orange-700 text-white font-bold transition-colors disabled:opacity-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500"
+                >
+                  {loading ? 'Submitting Strategy Request...' : 'Submit Campaign Scaling Request'}
                 </button>
               </div>
-              <p className="text-[10px] text-slate-400 text-center">We will conduct a complete meta-presence index of your brand within 24 hours.</p>
+              <p className="text-[10px] text-slate-400 text-center">We will conduct a tailored acquisition forecast and performance audit within 24 hours.</p>
             </form>
           </div>
         </div>

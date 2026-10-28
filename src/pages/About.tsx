@@ -1,31 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { useSEO } from '../hooks/useSEO';
 import { CheckCircle2, Users, Target, Zap } from 'lucide-react';
 
 const About: React.FC = () => {
-  useSEO({
-    title: 'About Us | Our Story & Core Values',
-    description: 'Learn about Momentrix Media, a collective of digital innovators and data-driven strategists specializing in AI automation, SEO, and paid performance marketing.',
-    keywords: 'About Momentrix Media, Digital Marketing Experts, AI Automation Team Hyderabad, Agency Core Values',
-    schemaMarkup: {
-      "@context": "https://schema.org",
-      "@type": "AboutPage",
-      "@id": "https://www.momentrixmedia.com/about#webpage",
-      "name": "About Us - Momentrix Media",
-      "description": "Learn about our mission, core values, and team.",
-      "url": "https://www.momentrixmedia.com/about",
-      "publisher": {
-        "@type": "Organization",
-        "name": "Momentrix Media",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://www.momentrixmedia.com/assets/logo-dark.png"
-        }
-      }
-    }
-  });
 
   return (
     <div className="pt-24 pb-16 min-h-screen">
@@ -48,7 +26,7 @@ const About: React.FC = () => {
               <div className="flex flex-col gap-4 mb-8">
                 {[
                   'Data-Driven Decision Making',
-                  'Award-Winning Creative Team',
+                  'Experienced Multi-Disciplinary Team',
                   'Transparent Reporting & Analytics',
                   'Dedicated Account Managers'
                 ].map((item, idx) => (
@@ -78,8 +56,10 @@ const About: React.FC = () => {
               className="relative h-[500px] rounded-3xl overflow-hidden"
             >
               <img 
-                src="/assets/momentrix-team.png" 
-                alt="Momentrix Team" 
+                src="/assets/momentrix-team.webp"
+                alt="The Momentrix Media team in Guntur"
+                width={1024}
+                height={1024}
                 loading="lazy"
                 className="w-full h-full object-cover"
               />

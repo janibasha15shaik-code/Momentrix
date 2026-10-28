@@ -1,30 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useSEO } from '../hooks/useSEO';
 import { FileText, Award, AlertCircle, HelpCircle } from 'lucide-react';
 
 const TermsOfService: React.FC = () => {
-  useSEO({
-    title: 'Terms of Service',
-    description: 'Read the Terms of Service of Momentrix Media. Review intellectual property rights, liability limitations, and governing laws.',
-    keywords: 'Terms of Service Momentrix Media, Terms of Use, Service Agreement, Web Terms, Legal Guntur',
-    schemaMarkup: {
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      "@id": "https://www.momentrixmedia.com/terms-of-service#webpage",
-      "name": "Terms of Service - Momentrix Media",
-      "description": "Read our terms of service and website usage rules.",
-      "url": "https://www.momentrixmedia.com/terms-of-service",
-      "publisher": {
-        "@type": "Organization",
-        "name": "Momentrix Media",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://www.momentrixmedia.com/assets/logo-dark.png"
-        }
-      }
-    }
-  });
 
   return (
     <div className="pt-24 pb-16 min-h-screen">

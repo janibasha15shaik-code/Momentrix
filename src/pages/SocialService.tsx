@@ -1,75 +1,53 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { useSEO } from '../hooks/useSEO';
 import { Megaphone, Heart, Share2, Sparkles, CheckCircle2, X, ExternalLink, ArrowRight } from 'lucide-react';
 
 const SocialService: React.FC = () => {
-  useSEO({
-    title: 'Social Media Marketing | Guntur & Hyderabad',
-    description: 'Momentrix Media runs elite Social Media Marketing in Guntur & Hyderabad. We build brand loyalty and high-engagement ad campaigns on Instagram, Facebook, and LinkedIn.',
-    keywords: 'Social Media Marketing Services Guntur, Social Media Agency Hyderabad, Instagram Marketing, Facebook Campaigns Guntur, Brand Engagement Andhra Pradesh',
-    schemaMarkup: {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      "@id": "https://www.momentrixmedia.com/services/social#service",
-      "name": "Social Media Marketing Services",
-      "description": "Professional Social Media Marketing Services in Hyderabad, building brand communities, managing page updates, running Meta ads campaigns, and growing organic engagement.",
-      "provider": {
-        "@type": "Organization",
-        "name": "Momentrix Media",
-        "url": "https://www.momentrixmedia.com"
-      },
-      "areaServed": "Hyderabad, Guntur, India",
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Social Media Capabilities",
-        "itemListElement": [
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Page Management & Schedules"
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Meta Sponsored Ad Campaigns"
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Organic Community Growth"
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Influencer Relations & Campaigns"
-            }
-          }
-        ]
-      }
-    }
-  });
 
   const [brandName, setBrandName] = useState('');
   const [email, setEmail] = useState('');
   const [showSuccess, setShowSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setBrandName('');
-    setEmail('');
-    setShowSuccess(true);
-    setTimeout(() => {
-      setShowSuccess(false);
-    }, 5000);
+    setLoading(true);
+    setError('');
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          firstName: brandName || 'Brand Partner',
+          lastName: '',
+          email,
+          service: 'Social Media Marketing & Brand Discovery',
+          message: `Brand Discovery Request for brand: ${brandName}`,
+        }),
+      });
+
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to submit discovery request.');
+      }
+
+      setBrandName('');
+      setEmail('');
+      setShowSuccess(true);
+      setTimeout(() => {
+        setShowSuccess(false);
+      }, 6000);
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : 'Something went wrong. Please try again.';
+      setError(msg);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -152,8 +130,10 @@ const SocialService: React.FC = () => {
                   </div>
                   <div className="aspect-[4/3] bg-slate-900 rounded-xl mb-3 flex items-center justify-center relative overflow-hidden border border-slate-800">
                     <img 
-                      src="/assets/social-ad-campaign.png" 
-                      alt="Sponsored Ads Campaign" 
+                      src="/assets/social-ad-campaign.webp"
+                      alt="Sponsored Instagram and Facebook ad campaign example"
+                      width={1024}
+                      height={1024}
                       loading="lazy"
                       className="w-full h-full object-cover"
                     />
@@ -247,26 +227,49 @@ const SocialService: React.FC = () => {
             </div>
 
             <form onSubmit={handleSubmit} className="p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl flex flex-col gap-6">
-              <h4 className="font-bold text-xl">Let's Craft Your Brand Narrative</h4>
+              <h3 className="font-bold text-xl">Let's Craft Your Brand Narrative</h3>
               <div className="space-y-4">
-                <input 
-                  type="text" 
-                  placeholder="Your Brand Name" 
-                  required
-                  value={brandName}
-                  onChange={(e) => setBrandName(e.target.value)}
-                  className="w-full p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-transparent text-sm" 
-                />
-                <input 
-                  type="email" 
-                  placeholder="Your Business Email" 
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-transparent text-sm" 
-                />
-                <button type="submit" className="w-full py-4 rounded-xl bg-pink-600 hover:bg-pink-700 text-white font-bold transition-colors">
-                  Get Free Brand Discovery Audit
+                <div>
+                  <label htmlFor="social-brand-name" className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
+                    Your Brand / Business Name <span className="text-red-500">*</span>
+                  </label>
+                  <input 
+                    id="social-brand-name"
+                    type="text" 
+                    placeholder="e.g. Acme Studio" 
+                    required
+                    value={brandName}
+                    onChange={(e) => setBrandName(e.target.value)}
+                    disabled={loading}
+                    className="w-full p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-transparent text-sm focus:outline-none focus:ring-2 focus:ring-pink-500 disabled:opacity-50" 
+                  />
+                </div>
+                <div>
+                  <label htmlFor="social-email" className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
+                    Work Email <span className="text-red-500">*</span>
+                  </label>
+                  <input 
+                    id="social-email"
+                    type="email" 
+                    placeholder="you@company.com" 
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    disabled={loading}
+                    className="w-full p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-transparent text-sm focus:outline-none focus:ring-2 focus:ring-pink-500 disabled:opacity-50" 
+                  />
+                </div>
+
+                {error && (
+                  <p role="alert" className="text-xs text-red-500 font-semibold">{error}</p>
+                )}
+
+                <button 
+                  type="submit" 
+                  disabled={loading}
+                  className="w-full py-4 rounded-xl bg-pink-600 hover:bg-pink-700 text-white font-bold transition-colors disabled:opacity-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-pink-500"
+                >
+                  {loading ? 'Submitting Discovery Request...' : 'Get Free Brand Discovery Audit'}
                 </button>
               </div>
               <p className="text-[10px] text-slate-400 text-center">We will conduct a complete meta-presence index of your brand within 24 hours.</p>

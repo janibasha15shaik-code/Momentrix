@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import logoLight from '../assets/Main Favicon.svg';
-import logoDark from '../assets/Main Favicon Dark.png'; // transparent background version
+import logoDark from '../assets/logo-mark-dark.webp'; // transparent background version (resized from Main Favicon Dark.png)
 
 interface LogoProps {
   className?: string;
@@ -50,7 +50,9 @@ const Logo: React.FC<LogoProps> = ({
       {/* Light mode logo — visible unless dark mode or dark-theme logo is forced */}
       <img
         src={logoLight}
-        alt="Momentrix logo"
+        alt="Momentrix Media logo"
+        width={79}
+        height={48}
         className={`${sizeClasses.img} object-contain transform group-hover:scale-105 transition-transform duration-300 ${
           forceDarkThemeLogo ? 'hidden' : 'block dark:hidden'
         }`}
@@ -59,7 +61,9 @@ const Logo: React.FC<LogoProps> = ({
       {/* Dark mode logo — transparent bg, visible in dark mode or when dark-theme logo is forced */}
       <img
         src={logoDark}
-        alt="Momentrix logo"
+        alt="Momentrix Media logo"
+        width={79}
+        height={48}
         className={`${sizeClasses.img} object-contain transform group-hover:scale-105 transition-transform duration-300 ${
           forceDarkThemeLogo ? 'block' : 'hidden dark:block'
         }`}

@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useSEO } from '../hooks/useSEO';
 import { Briefcase, MapPin, Clock, ArrowRight, X, Upload, Check, AlertCircle } from 'lucide-react';
 
 interface JobDetail {
@@ -16,27 +15,6 @@ interface JobDetail {
 }
 
 const Careers: React.FC = () => {
-  useSEO({
-    title: 'Careers | Join the Momentrix Media Team',
-    description: 'Join the Momentrix Media team. We are looking for talented SEO specialists, paid performance ads managers, developers, and designers to scale brand equity.',
-    keywords: 'Digital Marketing Careers, SEO Jobs Hyderabad, Join Momentrix Media, Remote Developer Jobs, Performance Marketing Roles',
-    schemaMarkup: {
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      "@id": "https://www.momentrixmedia.com/careers#webpage",
-      "name": "Careers - Momentrix Media",
-      "description": "Join our team of creative, analytical, and growth-oriented professionals.",
-      "url": "https://www.momentrixmedia.com/careers",
-      "publisher": {
-        "@type": "Organization",
-        "name": "Momentrix Media",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://www.momentrixmedia.com/assets/logo-dark.png"
-        }
-      }
-    }
-  });
 
   const jobs: JobDetail[] = [
     {
@@ -131,6 +109,17 @@ const Careers: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
+
+  // Close modal on Escape key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && activeJob) {
+        setActiveJob(null);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [activeJob]);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -321,6 +310,9 @@ const Careers: React.FC = () => {
         {activeJob && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm overflow-y-auto">
             <motion.div
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="careers-modal-title"
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -329,7 +321,8 @@ const Careers: React.FC = () => {
               {/* Close Button */}
               <button
                 onClick={() => setActiveJob(null)}
-                className="absolute top-4 right-4 p-2 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-white transition-colors z-10"
+                aria-label="Close job application modal"
+                className="absolute top-4 right-4 p-2 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-white transition-colors z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -339,7 +332,7 @@ const Careers: React.FC = () => {
                 <span className="text-xs font-bold uppercase tracking-wider text-primary-600 bg-primary-50 dark:bg-primary-900/30 px-3 py-1 rounded-full">
                   {activeJob.department}
                 </span>
-                <h3 className="text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white mt-3 mb-4">
+                <h3 id="careers-modal-title" className="text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white mt-3 mb-4">
                   {activeJob.title}
                 </h3>
                 
@@ -428,8 +421,9 @@ const Careers: React.FC = () => {
                   <form onSubmit={handleFormSubmit} className="space-y-4">
                     <div className="grid grid-cols-2 gap-3">
                       <div className="space-y-1">
-                        <label className="text-[10px] font-bold text-slate-400 uppercase">First Name</label>
+                        <label htmlFor="careers-first-name" className="text-[10px] font-bold text-slate-400 uppercase">First Name</label>
                         <input
+                          id="careers-first-name"
                           type="text"
                           required
                           value={form.firstName}
@@ -438,8 +432,9 @@ const Careers: React.FC = () => {
                         />
                       </div>
                       <div className="space-y-1">
-                        <label className="text-[10px] font-bold text-slate-400 uppercase">Last Name</label>
+                        <label htmlFor="careers-last-name" className="text-[10px] font-bold text-slate-400 uppercase">Last Name</label>
                         <input
+                          id="careers-last-name"
                           type="text"
                           required
                           value={form.lastName}
@@ -450,8 +445,9 @@ const Careers: React.FC = () => {
                     </div>
 
                     <div className="space-y-1">
-                      <label className="text-[10px] font-bold text-slate-400 uppercase">Email Address</label>
+                      <label htmlFor="careers-email" className="text-[10px] font-bold text-slate-400 uppercase">Email Address</label>
                       <input
+                        id="careers-email"
                         type="email"
                         required
                         value={form.email}
@@ -461,8 +457,9 @@ const Careers: React.FC = () => {
                     </div>
 
                     <div className="space-y-1">
-                      <label className="text-[10px] font-bold text-slate-400 uppercase">Phone Number</label>
+                      <label htmlFor="careers-phone" className="text-[10px] font-bold text-slate-400 uppercase">Phone Number</label>
                       <input
+                        id="careers-phone"
                         type="tel"
                         required
                         value={form.phone}
@@ -473,9 +470,10 @@ const Careers: React.FC = () => {
 
                     {/* File Upload Option */}
                     <div className="space-y-1">
-                      <label className="text-[10px] font-bold text-slate-400 uppercase">Upload Resume (PDF, DOCX)</label>
+                      <label htmlFor="careers-resume-upload" className="text-[10px] font-bold text-slate-400 uppercase">Upload Resume (PDF, DOCX)</label>
                       <div className="relative border border-dashed border-slate-200 dark:border-slate-800 rounded-2xl p-4 text-center hover:border-primary-500 transition-colors cursor-pointer bg-white dark:bg-slate-900">
                         <input
+                          id="careers-resume-upload"
                           type="file"
                           required
                           accept=".pdf,.doc,.docx"

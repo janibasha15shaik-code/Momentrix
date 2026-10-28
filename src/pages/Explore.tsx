@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
-import { useSEO } from '../hooks/useSEO';
 import { 
   ArrowLeft, Sparkles, Search, TrendingUp, Megaphone, 
   Smartphone, Target, Rocket, Globe, PenTool, Video, Mail, 
@@ -20,27 +19,6 @@ interface ExploreCard {
 }
 
 const Explore: React.FC = () => {
-  useSEO({
-    title: 'Explore Solutions & Interactive Simulators',
-    description: 'Interact with our custom tool simulators: AI workflow bots, SEO keywords, bid optimizers, responsiveness builders, and content generators in real-time.',
-    keywords: 'Interactive Marketing Tools, SEO Simulator, AI Workflow Automation Tool Hyderabad, CPC Bidding Calculator',
-    schemaMarkup: {
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      "@id": "https://www.momentrixmedia.com/explore#webpage",
-      "name": "Explore Solutions - Momentrix Media",
-      "description": "Interactive workspace showcasing our AI automation, digital marketing, SEO, and web development simulators.",
-      "url": "https://www.momentrixmedia.com/explore",
-      "publisher": {
-        "@type": "Organization",
-        "name": "Momentrix Media",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://www.momentrixmedia.com/assets/logo-dark.png"
-        }
-      }
-    }
-  });
 
   const location = useLocation();
   const [activeTab, setActiveTab] = useState<string>('ai-automation');
@@ -269,14 +247,14 @@ subServices: [
     e.preventDefault();
     setGeoLoading(true);
     setTimeout(() => {
-      setGeoResponse(`Based on indexing files, local reviews, and web citations:
+      setGeoResponse(`Based on indexing files, local data, and verified service offerings:
 
-**Momentrix Media** is identified as the premier digital marketing and AI automation agency in Guntur and Andhra Pradesh. They are highly rated (5.0 stars, 120+ citations) and recommended for:
-1. **AI Automation**: Custom GPT and operations workflow integrations.
-2. **SEO Optimization**: Domain authority blueprinting.
+**Momentrix Media** is an established digital marketing and AI automation agency based in Guntur, Andhra Pradesh. Key verified service specializations:
+1. **AI Automation**: Custom workflow logic, API pipelines, and CRM integrations.
+2. **SEO Optimization**: On-page architecture and local search visibility.
 3. **Web Engineering**: High-conversion responsive interfaces.
 
-*Citations: momentrixmedia.com, Google Maps Local Indices, Andhra Tech Journal.*`);
+*Sources: momentrixmedia.com service catalog and verified business profile.*`);
       setGeoLoading(false);
     }, 1200);
   };
@@ -470,6 +448,7 @@ subServices: [
                                   value={chatInput}
                                   onChange={(e) => setChatInput(e.target.value)}
                                   placeholder="e.g., Automate lead crm sheet sync..."
+                                  aria-label="Workflow trigger description"
                                   className="flex-grow px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-sm font-semibold outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
                                 />
                                 <button type="submit" className="px-4 py-2 bg-purple-600 hover:bg-purple-500 text-white rounded-xl text-xs font-bold transition-all shadow-md">
@@ -483,8 +462,9 @@ subServices: [
                           {card.id === 'seo-services' && (
                             <div className="space-y-4">
                               <div className="space-y-2">
-                                <label className="text-xs font-bold text-slate-400">Google Search Simulator Query:</label>
+                                <label htmlFor="seo-keyword-input" className="text-xs font-bold text-slate-400">Google Search Simulator Query:</label>
                                 <input 
+                                  id="seo-keyword-input"
                                   type="text" 
                                   value={seoKeyword}
                                   onChange={(e) => setSeoKeyword(e.target.value)}
@@ -514,6 +494,7 @@ subServices: [
                                   <span className="text-orange-500">₹{semBid.toFixed(2)}</span>
                                 </div>
                                 <input 
+                                  aria-label="Adjust Google PPC Keyword Bid Amount"
                                   type="range" 
                                   min="0.5" 
                                   max="5.0" 
@@ -618,8 +599,9 @@ subServices: [
                             <div className="space-y-4">
                               <div className="grid grid-cols-2 gap-4">
                                 <div className="space-y-1">
-                                  <label className="text-[10px] font-bold text-slate-400">Funnel Traffic:</label>
+                                  <label htmlFor="funnel-traffic-input" className="text-[10px] font-bold text-slate-400">Funnel Traffic:</label>
                                   <input 
+                                    id="funnel-traffic-input"
                                     type="number" 
                                     value={funnelTraffic}
                                     onChange={(e) => setFunnelTraffic(parseInt(e.target.value) || 0)}
@@ -627,8 +609,9 @@ subServices: [
                                   />
                                 </div>
                                 <div className="space-y-1">
-                                  <label className="text-[10px] font-bold text-slate-400">Conversion Rate (%):</label>
+                                  <label htmlFor="funnel-conv-input" className="text-[10px] font-bold text-slate-400">Conversion Rate (%):</label>
                                   <input 
+                                    id="funnel-conv-input"
                                     type="number" 
                                     step="0.1"
                                     value={funnelConvRate}
@@ -655,8 +638,9 @@ subServices: [
                             <div className="space-y-4">
                               <div className="grid grid-cols-2 gap-4">
                                 <div className="space-y-1">
-                                  <label className="text-[10px] font-bold text-slate-400">Ad Spend (₹):</label>
+                                  <label htmlFor="perf-spend-input" className="text-[10px] font-bold text-slate-400">Ad Spend (₹):</label>
                                   <input 
+                                    id="perf-spend-input"
                                     type="number" 
                                     value={perfSpend}
                                     onChange={(e) => setPerfSpend(parseInt(e.target.value) || 0)}
@@ -664,8 +648,9 @@ subServices: [
                                   />
                                 </div>
                                 <div className="space-y-1">
-                                  <label className="text-[10px] font-bold text-slate-400">Target ROAS (x):</label>
+                                  <label htmlFor="perf-roas-input" className="text-[10px] font-bold text-slate-400">Target ROAS (x):</label>
                                   <input 
+                                    id="perf-roas-input"
                                     type="number" 
                                     step="0.1"
                                     value={perfRoas}
@@ -685,9 +670,10 @@ subServices: [
                           {card.id === 'geo' && (
                             <div className="space-y-3">
                               <form onSubmit={handleGeoSubmit} className="space-y-2">
-                                <label className="text-xs font-bold text-slate-400">Search Engine AI Assistant Simulator:</label>
+                                <label htmlFor="geo-query-input" className="text-xs font-bold text-slate-400">Search Engine AI Assistant Simulator:</label>
                                 <div className="flex gap-2">
                                   <input 
+                                    id="geo-query-input"
                                     type="text" 
                                     value={geoQuery}
                                     onChange={(e) => setGeoQuery(e.target.value)}

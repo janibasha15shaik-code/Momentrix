@@ -1,75 +1,51 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { useSEO } from '../hooks/useSEO';
 import { Search, TrendingUp, Target, Shield, Star, CheckCircle2, X, ExternalLink, ArrowRight } from 'lucide-react';
 
 const SeoService: React.FC = () => {
-  useSEO({
-    title: 'SEO Services | Hyderabad & Guntur',
-    description: 'Momentrix Media provides professional SEO Services in Hyderabad and Guntur. We build domain authority blueprints, optimize web speed, and capture high-intent traffic.',
-    keywords: 'SEO Services in Hyderabad, Search Engine Optimization Guntur, Technical SEO Audit, Local SEO Agency, Domain Authority link building',
-    schemaMarkup: {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      "@id": "https://www.momentrixmedia.com/services/seo#service",
-      "name": "Search Engine Optimization (SEO) Services",
-      "description": "Premium SEO Services in Hyderabad and Guntur, establishing domain authority, technical auditing, local SEO, and keyword optimization to rank your website on top.",
-      "provider": {
-        "@type": "Organization",
-        "name": "Momentrix Media",
-        "url": "https://www.momentrixmedia.com"
-      },
-      "areaServed": "Hyderabad, Guntur, India",
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "SEO Capabilities",
-        "itemListElement": [
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Technical SEO Auditing"
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "On-Page Semantic Optimization"
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Off-Page Link Building"
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Local SEO & Map Listing"
-            }
-          }
-        ]
-      }
-    }
-  });
 
   const [websiteUrl, setWebsiteUrl] = useState('');
   const [email, setEmail] = useState('');
   const [showSuccess, setShowSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setWebsiteUrl('');
-    setEmail('');
-    setShowSuccess(true);
-    setTimeout(() => {
-      setShowSuccess(false);
-    }, 5000);
+    setLoading(true);
+    setError('');
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          websiteUrl,
+          email,
+          service: 'SEO Optimization & Technical Audit',
+        }),
+      });
+
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to submit audit request.');
+      }
+
+      setWebsiteUrl('');
+      setEmail('');
+      setShowSuccess(true);
+      setTimeout(() => {
+        setShowSuccess(false);
+      }, 6000);
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : 'Something went wrong. Please try again.';
+      setError(msg);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -245,29 +221,52 @@ const SeoService: React.FC = () => {
             </div>
 
             <form onSubmit={handleSubmit} className="p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl flex flex-col gap-6">
-              <h4 className="font-bold text-xl">Request a Free Audit Blueprint</h4>
+              <h3 className="font-bold text-xl">Request a Free Audit Blueprint</h3>
               <div className="space-y-4">
-                <input 
-                  type="text" 
-                  placeholder="Your Website URL" 
-                  required
-                  value={websiteUrl}
-                  onChange={(e) => setWebsiteUrl(e.target.value)}
-                  className="w-full p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-transparent text-sm" 
-                />
-                <input 
-                  type="email" 
-                  placeholder="Your Business Email" 
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-transparent text-sm" 
-                />
-                <button type="submit" className="w-full py-4 rounded-xl bg-primary-600 hover:bg-primary-700 text-white font-bold transition-colors">
-                  Submit Website Audit Request
+                <div>
+                  <label htmlFor="seo-audit-url" className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
+                    Website URL <span className="text-red-500">*</span>
+                  </label>
+                  <input 
+                    id="seo-audit-url"
+                    type="url" 
+                    placeholder="https://example.com" 
+                    required
+                    value={websiteUrl}
+                    onChange={(e) => setWebsiteUrl(e.target.value)}
+                    disabled={loading}
+                    className="w-full p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-transparent text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 disabled:opacity-50" 
+                  />
+                </div>
+                <div>
+                  <label htmlFor="seo-audit-email" className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
+                    Work Email <span className="text-red-500">*</span>
+                  </label>
+                  <input 
+                    id="seo-audit-email"
+                    type="email" 
+                    placeholder="you@company.com" 
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    disabled={loading}
+                    className="w-full p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-transparent text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 disabled:opacity-50" 
+                  />
+                </div>
+
+                {error && (
+                  <p role="alert" className="text-xs text-red-500 font-semibold">{error}</p>
+                )}
+
+                <button 
+                  type="submit" 
+                  disabled={loading}
+                  className="w-full py-4 rounded-xl bg-primary-600 hover:bg-primary-700 text-white font-bold transition-colors disabled:opacity-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+                >
+                  {loading ? 'Analyzing & Submitting...' : 'Submit Website Audit Request'}
                 </button>
               </div>
-              <p className="text-[10px] text-slate-400 text-center">No commitment required. We deliver your full SEO index report in 24 hours.</p>
+              <p className="text-[10px] text-slate-400 text-center">No commitment required. We deliver your full SEO index report within 24 hours.</p>
             </form>
           </div>
         </div>

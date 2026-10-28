@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import Logo from './Logo';
+import { CITY_PAGES } from '../data/cities';
 
 const Footer: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -128,31 +129,42 @@ const Footer: React.FC = () => {
                     <input 
                       type="email" 
                       placeholder="Your email address" 
+                      aria-label="Your email address for newsletter subscription"
                       required
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       disabled={loading}
-                      className="w-full pl-4 pr-12 py-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 text-sm disabled:opacity-50"
+                      className="w-full pl-4 pr-12 py-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500 text-sm disabled:opacity-50"
                     />
                     <button 
                       type="submit" 
                       disabled={loading}
-                      className="absolute right-2 top-2 bottom-2 w-9 rounded-lg bg-primary-600 hover:bg-primary-700 text-white flex items-center justify-center transition-colors disabled:opacity-50"
+                      aria-label="Subscribe to newsletter"
+                      className="absolute right-2 top-2 bottom-2 w-9 rounded-lg bg-primary-600 hover:bg-primary-700 text-white flex items-center justify-center transition-colors disabled:opacity-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400"
                     >
                       {loading ? '...' : <ArrowRight className="w-4 h-4" />}
                     </button>
                   </div>
                 </form>
                 {error && (
-                  <p className="text-xs text-red-500 font-medium pl-1">{error}</p>
+                  <p role="alert" className="text-xs text-red-500 font-medium pl-1">{error}</p>
                 )}
               </div>
             )}
           </div>
         </div>
 
+        <div className="pb-8 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-slate-500 dark:text-slate-400">
+          <span className="font-semibold text-slate-700 dark:text-slate-300">Areas we serve:</span>
+          {CITY_PAGES.map((c) => (
+            <Link key={c.slug} to={`/${c.slug}`} className="hover:text-primary-600 transition-colors">
+              Digital Marketing in {c.city}
+            </Link>
+          ))}
+        </div>
+
         <div className="pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-slate-500 dark:text-slate-400">
+          <p className="text-sm text-slate-500 dark:text-slate-400" suppressHydrationWarning>
             © {new Date().getFullYear()} Momentrix Media. All rights reserved.
           </p>
           <div className="flex gap-6 text-sm text-slate-500 dark:text-slate-400">

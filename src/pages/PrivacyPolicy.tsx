@@ -1,30 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useSEO } from '../hooks/useSEO';
 import { ShieldCheck, Eye, Lock, RefreshCw } from 'lucide-react';
 
 const PrivacyPolicy: React.FC = () => {
-  useSEO({
-    title: 'Privacy Policy',
-    description: 'Read the Privacy Policy of Momentrix Media. Learn about our commitments to protecting your personal data, privacy settings, and security standards.',
-    keywords: 'Privacy Policy Momentrix Media, Data Protection, Cookie Policy, Compliance Guntur',
-    schemaMarkup: {
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      "@id": "https://www.momentrixmedia.com/privacy-policy#webpage",
-      "name": "Privacy Policy - Momentrix Media",
-      "description": "Learn about our data collection and privacy practices.",
-      "url": "https://www.momentrixmedia.com/privacy-policy",
-      "publisher": {
-        "@type": "Organization",
-        "name": "Momentrix Media",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://www.momentrixmedia.com/assets/logo-dark.png"
-        }
-      }
-    }
-  });
 
   return (
     <div className="pt-24 pb-16 min-h-screen">

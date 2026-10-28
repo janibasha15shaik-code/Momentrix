@@ -1,75 +1,53 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { useSEO } from '../hooks/useSEO';
 import { Smartphone, Code, Cpu, Database, CheckCircle2, X, ExternalLink, ArrowRight } from 'lucide-react';
 
 const WebService: React.FC = () => {
-  useSEO({
-    title: 'Web Development | Hyderabad & Guntur',
-    description: 'Momentrix Media is a top-tier Web Development Company in Hyderabad. We engineer high-performance web systems, custom portals, E-commerce web engines, and API integrations.',
-    keywords: 'Web Development Company in Hyderabad, Web Development Services, E-commerce Web Developer, React Next.js Developer Hyderabad, Responsive Web Design',
-    schemaMarkup: {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      "@id": "https://www.momentrixmedia.com/services/web#service",
-      "name": "Web Development Services",
-      "description": "Premium Web Development Services in Hyderabad. We engineer high-performance web systems, custom portals, E-commerce web engines, and API integrations.",
-      "provider": {
-        "@type": "Organization",
-        "name": "Momentrix Media",
-        "url": "https://www.momentrixmedia.com"
-      },
-      "areaServed": "Hyderabad, Guntur, India",
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Web Development Capabilities",
-        "itemListElement": [
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Custom Portal Engineering"
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Responsive Web UI/UX Design"
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "E-Commerce Systems Setup"
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "API & ERP Integration Services"
-            }
-          }
-        ]
-      }
-    }
-  });
 
   const [projectDetails, setProjectDetails] = useState('');
   const [email, setEmail] = useState('');
   const [showSuccess, setShowSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setProjectDetails('');
-    setEmail('');
-    setShowSuccess(true);
-    setTimeout(() => {
-      setShowSuccess(false);
-    }, 5000);
+    setLoading(true);
+    setError('');
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          firstName: 'Web Inquiry',
+          lastName: 'Client',
+          email,
+          service: 'Web Development & Modern Engineering',
+          message: projectDetails,
+        }),
+      });
+
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to submit project inquiry.');
+      }
+
+      setProjectDetails('');
+      setEmail('');
+      setShowSuccess(true);
+      setTimeout(() => {
+        setShowSuccess(false);
+      }, 6000);
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : 'Something went wrong. Please try again.';
+      setError(msg);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -229,26 +207,49 @@ const WebService: React.FC = () => {
             </div>
 
             <form onSubmit={handleSubmit} className="p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl flex flex-col gap-6">
-              <h4 className="font-bold text-xl">Let's Construct Your Digital Engine</h4>
+              <h3 className="font-bold text-xl">Let's Construct Your Digital Engine</h3>
               <div className="space-y-4">
-                <input 
-                  type="text" 
-                  placeholder="Tell us about your project" 
-                  required
-                  value={projectDetails}
-                  onChange={(e) => setProjectDetails(e.target.value)}
-                  className="w-full p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-transparent text-sm" 
-                />
-                <input 
-                  type="email" 
-                  placeholder="Your Business Email" 
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-transparent text-sm" 
-                />
-                <button type="submit" className="w-full py-4 rounded-xl bg-primary-600 hover:bg-primary-700 text-white font-bold transition-colors">
-                  Submit Project Details
+                <div>
+                  <label htmlFor="web-project-details" className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
+                    Project Goals / Overview <span className="text-red-500">*</span>
+                  </label>
+                  <input 
+                    id="web-project-details"
+                    type="text" 
+                    placeholder="e.g. Modern e-commerce store / SaaS platform" 
+                    required
+                    value={projectDetails}
+                    onChange={(e) => setProjectDetails(e.target.value)}
+                    disabled={loading}
+                    className="w-full p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-transparent text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 disabled:opacity-50" 
+                  />
+                </div>
+                <div>
+                  <label htmlFor="web-email" className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
+                    Work Email <span className="text-red-500">*</span>
+                  </label>
+                  <input 
+                    id="web-email"
+                    type="email" 
+                    placeholder="you@company.com" 
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    disabled={loading}
+                    className="w-full p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-transparent text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 disabled:opacity-50" 
+                  />
+                </div>
+
+                {error && (
+                  <p role="alert" className="text-xs text-red-500 font-semibold">{error}</p>
+                )}
+
+                <button 
+                  type="submit" 
+                  disabled={loading}
+                  className="w-full py-4 rounded-xl bg-primary-600 hover:bg-primary-700 text-white font-bold transition-colors disabled:opacity-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+                >
+                  {loading ? 'Submitting Project Details...' : 'Submit Project Details'}
                 </button>
               </div>
               <p className="text-[10px] text-slate-400 text-center">We will set up an engineering roadmap and complete architecture review within 24 hours.</p>

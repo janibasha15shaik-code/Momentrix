@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import ScrollToTop from './components/ScrollToTop';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -18,12 +18,20 @@ import Contact from './pages/Contact';
 import Explore from './pages/Explore';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfService from './pages/TermsOfService';
+import BlogPost from './pages/BlogPost';
+import CityPage from './pages/CityPage';
+import NotFound from './pages/NotFound';
 import { ThemeProvider } from './context/ThemeContext';
+import { CITY_PAGES } from './data/cities';
+import { useRouteSEO } from './hooks/useSEO';
 
+// Router is supplied by main.tsx (BrowserRouter) or entry-server.tsx (StaticRouter).
 function App() {
+  useRouteSEO();
+
   return (
     <ThemeProvider>
-      <Router>
+      <>
         <ScrollToTop />
         <div className="min-h-screen flex flex-col font-sans">
           <Navbar />
@@ -39,17 +47,22 @@ function App() {
               <Route path="/portfolio" element={<Portfolio />} />
               <Route path="/case-studies" element={<CaseStudies />} />
               <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:slug" element={<BlogPost />} />
               <Route path="/careers" element={<Careers />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/explore" element={<Explore />} />
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
               <Route path="/terms-of-service" element={<TermsOfService />} />
+              {CITY_PAGES.map((c) => (
+                <Route key={c.slug} path={`/${c.slug}`} element={<CityPage city={c} />} />
+              ))}
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
           <Footer />
           <WhatsAppButton />
         </div>
-      </Router>
+      </>
     </ThemeProvider>
   );
 }

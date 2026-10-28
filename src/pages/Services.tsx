@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { useSEO } from '../hooks/useSEO';
 import { Search, Megaphone, Smartphone, Target, TrendingUp, PenTool, Globe, Video, Mail, ArrowRight, Sparkles, Rocket } from 'lucide-react';
 
 interface ServiceItem {
@@ -12,23 +11,6 @@ interface ServiceItem {
 }
 
 const Services: React.FC = () => {
-  useSEO({
-    title: 'Services | Our Digital Capabilities',
-    description: 'Explore Momentrix Media capabilities in Guntur & Hyderabad: AI automation, search engine optimization (SEO), PPC search ads, web development, performance marketing, social media, and email marketing.',
-    keywords: 'Digital Marketing Services Guntur, AI Automation Services, SEO Services in Hyderabad, PPC Management, Web Development Company Guntur, Social Media Marketing',
-    schemaMarkup: {
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      "@id": "https://www.momentrixmedia.com/services#webpage",
-      "name": "Our Services & Digital Capabilities - Momentrix Media",
-      "description": "Explore our digital transformational capabilities including web development, search engine optimization, PPC search marketing, social media campaigns, and AI workflows.",
-      "url": "https://www.momentrixmedia.com/services",
-      "publisher": {
-        "@type": "Organization",
-        "name": "Momentrix Media"
-      }
-    }
-  });
 
   useEffect(() => {
     const hash = window.location.hash;

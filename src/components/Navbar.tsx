@@ -31,6 +31,19 @@ const Navbar: React.FC = () => {
   }, [location]);
   /* eslint-enable react-hooks/set-state-in-effect */
 
+  // Close menus on Escape key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setMobileMenuOpen(false);
+        setMobileServicesOpen(false);
+        setServicesDropdownOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
@@ -147,7 +160,10 @@ const Navbar: React.FC = () => {
         <div className="flex items-center gap-4 lg:hidden">
           <button 
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className={`p-2 -mr-2 transition-colors duration-300 ${
+            aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-nav"
+            className={`p-2 -mr-2 rounded-lg transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 ${
               isHeaderTransparent && isServiceSubpage 
                 ? 'text-white hover:text-primary-300' 
                 : 'text-slate-700 dark:text-slate-200 hover:text-primary-600 dark:hover:text-primary-400'
@@ -162,6 +178,9 @@ const Navbar: React.FC = () => {
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div 
+            id="mobile-nav"
+            role="region"
+            aria-label="Mobile Navigation"
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
@@ -183,6 +202,8 @@ const Navbar: React.FC = () => {
               <div className="py-1 border-b border-slate-100 dark:border-slate-800">
                 <button 
                   onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                  aria-expanded={mobileServicesOpen}
+                  aria-controls="mobile-services-list"
                   className="w-full text-left text-lg font-medium py-2 flex justify-between items-center hover:text-primary-500 transition-colors"
                 >
                   <span>Services</span>
@@ -195,6 +216,7 @@ const Navbar: React.FC = () => {
                 <AnimatePresence>
                   {mobileServicesOpen && (
                     <motion.div
+                      id="mobile-services-list"
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}

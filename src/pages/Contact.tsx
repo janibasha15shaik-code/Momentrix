@@ -1,28 +1,8 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useSEO } from '../hooks/useSEO';
 import { Mail, MapPin, Phone, Send, CheckCircle2, X,CalendarDays, } from 'lucide-react';
 
 const Contact: React.FC = () => {
-  useSEO({
-    title: 'Contact Us | Book a Free Consultation',
-    description: 'Get in touch with Momentrix Media today. Request a free growth strategy consultation for AI automation, SEO, PPC ads, or web development services.',
-    keywords: 'Contact Momentrix Media, Digital Marketing Consultation, Hire SEO Expert Hyderabad, Web Development Agency Inquiry',
-    schemaMarkup: {
-      "@context": "https://schema.org",
-      "@type": "ContactPage",
-      "@id": "https://www.momentrixmedia.com/contact#webpage",
-      "name": "Contact Us - Momentrix Media",
-      "description": "Book a free digital growth strategy session with our technical marketing team.",
-      "url": "https://www.momentrixmedia.com/contact",
-      "mainEntity": {
-        "@type": "Organization",
-        "name": "Momentrix Media",
-        "telephone": "+91-868-6546-419",
-        "email": "contact@momentrixmedia.com"
-      }
-    }
-  });
 
   const [formData, setFormData] = useState({
     firstName: '',
@@ -30,7 +10,8 @@ const Contact: React.FC = () => {
     email: '',
     phone: '',
     service: '',
-    message: ''
+    message: '',
+    hp: ''
   });
   const [showSuccess, setShowSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -40,6 +21,15 @@ const Contact: React.FC = () => {
     e.preventDefault();
     setLoading(true);
     setError('');
+
+    // Basic phone validation (at least 8 digits)
+    const digitsOnly = formData.phone.replace(/\D/g, '');
+    if (digitsOnly.length < 8) {
+      setError('Please provide a valid contact number (at least 8 digits).');
+      setLoading(false);
+      return;
+    }
+
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
@@ -58,7 +48,8 @@ const Contact: React.FC = () => {
         email: '',
         phone: '',
         service: '',
-        message: ''
+        message: '',
+        hp: ''
       });
       setShowSuccess(true);
       setTimeout(() => {
@@ -113,10 +104,10 @@ const Contact: React.FC = () => {
                 </div>
                 <div>
                   <a 
-                    href="mailto:Info@momentrixmedia.com" 
+                    href="mailto:info@momentrixmedia.com" 
                     className="text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 font-semibold transition-colors"
                   >
-                    Info@momentrixmedia.com
+                    info@momentrixmedia.com
                   </a>
                 </div>
               </div>
@@ -159,13 +150,26 @@ const Contact: React.FC = () => {
               
               <h3 className="text-2xl font-bold mb-6 relative z-10">Send us a message</h3>
               
-              <form className="relative z-10 space-y-5" onSubmit={handleSubmit}>
+              <form className="relative z-10 space-y-5" onSubmit={handleSubmit} noValidate={false}>
+                {/* Honeypot field for anti-spam */}
+                <input
+                  type="text"
+                  name="website_hp"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={formData.hp}
+                  onChange={(e) => setFormData({ ...formData, hp: e.target.value })}
+                  style={{ display: 'none' }}
+                  aria-hidden="true"
+                />
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-slate-700 dark:text-slate-300">First Name</label>
+                    <label htmlFor="contact-first-name" className="text-sm font-medium text-slate-700 dark:text-slate-300">First Name <span className="text-red-500">*</span></label>
                     <input 
+                      id="contact-first-name"
                       type="text" 
-                      placeholder="FirstName" 
+                      placeholder="e.g. Rahul" 
                       value={formData.firstName}
                       onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
                       required
@@ -174,10 +178,11 @@ const Contact: React.FC = () => {
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Last Name</label>
+                    <label htmlFor="contact-last-name" className="text-sm font-medium text-slate-700 dark:text-slate-300">Last Name <span className="text-red-500">*</span></label>
                     <input 
+                      id="contact-last-name"
                       type="text" 
-                      placeholder="LastName" 
+                      placeholder="e.g. Sharma" 
                       value={formData.lastName}
                       onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
                       required
@@ -189,10 +194,11 @@ const Contact: React.FC = () => {
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Work Email</label>
+                    <label htmlFor="contact-email" className="text-sm font-medium text-slate-700 dark:text-slate-300">Work Email <span className="text-red-500">*</span></label>
                     <input 
+                      id="contact-email"
                       type="email" 
-                      placeholder="company@gmail.com" 
+                      placeholder="you@company.com" 
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       required
@@ -201,10 +207,11 @@ const Contact: React.FC = () => {
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Phone Number</label>
+                    <label htmlFor="contact-phone" className="text-sm font-medium text-slate-700 dark:text-slate-300">Phone Number <span className="text-red-500">*</span></label>
                     <input 
+                      id="contact-phone"
                       type="tel" 
-                      placeholder=" +91 00000-00000" 
+                      placeholder="+91 98765 43210" 
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       required
@@ -215,28 +222,31 @@ const Contact: React.FC = () => {
                 </div>
                 
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Services of Interest</label>
+                  <label htmlFor="contact-service" className="text-sm font-medium text-slate-700 dark:text-slate-300">Services of Interest <span className="text-red-500">*</span></label>
                   <select 
+                    id="contact-service"
                     value={formData.service}
                     onChange={(e) => setFormData({ ...formData, service: e.target.value })}
                     required
                     disabled={loading}
-                    className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all appearance-none disabled:opacity-50"
+                    className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all disabled:opacity-50"
                   >
                     <option value="">Select a service...</option>
                     <option value="AI Automation">AI Automation</option>
                     <option value="SEO Optimization">SEO Optimization</option>
                     <option value="Performance Marketing">Performance Marketing</option>
                     <option value="Web Development">Web Development</option>
-                    <option value="Full Service Agency">Other Services</option>
+                    <option value="Social Media Marketing">Social Media Marketing</option>
+                    <option value="Full Service Agency">Full Service Agency</option>
                   </select>
                 </div>
                 
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-slate-700 dark:text-slate-300">How can we help?</label>
+                  <label htmlFor="contact-message" className="text-sm font-medium text-slate-700 dark:text-slate-300">How can we help? <span className="text-red-500">*</span></label>
                   <textarea 
+                    id="contact-message"
                     rows={4} 
-                    placeholder="Tell us about your project goals..." 
+                    placeholder="Tell us about your project goals, timeline, and current marketing channels..." 
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     required
@@ -248,13 +258,13 @@ const Contact: React.FC = () => {
                 <button 
                   type="submit" 
                   disabled={loading}
-                  className="w-full py-4 rounded-xl bg-primary-600 text-white font-bold hover:bg-primary-700 hover:shadow-lg hover:shadow-primary-500/30 transition-all flex items-center justify-center gap-2 disabled:opacity-50"
+                  className="w-full py-4 rounded-xl bg-primary-600 text-white font-bold hover:bg-primary-700 hover:shadow-lg hover:shadow-primary-500/30 transition-all flex items-center justify-center gap-2 disabled:opacity-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400"
                 >
-                  {loading ? 'Sending...' : 'Send Message'} <Send className="w-4 h-4" />
+                  {loading ? 'Sending Request...' : 'Send Message'} <Send className="w-4 h-4" />
                 </button>
 
                 {error && (
-                  <p className="text-sm text-red-500 font-semibold text-center mt-2">{error}</p>
+                  <p role="alert" className="text-sm text-red-500 font-semibold text-center mt-2">{error}</p>
                 )}
               </form>
             </div>
@@ -280,7 +290,7 @@ const Contact: React.FC = () => {
       {/* Success Popup Modal */}
       <AnimatePresence>
         {showSuccess && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/50 backdrop-blur-sm">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/50 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="contact-success-title">
             <motion.div
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -289,7 +299,8 @@ const Contact: React.FC = () => {
             >
               <button 
                 onClick={() => setShowSuccess(false)}
-                className="absolute top-4 right-4 text-slate-400 hover:text-slate-650 dark:hover:text-slate-200 transition-colors"
+                aria-label="Close success dialog"
+                className="absolute top-4 right-4 text-slate-400 hover:text-slate-650 dark:hover:text-slate-200 transition-colors p-1"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -298,9 +309,9 @@ const Contact: React.FC = () => {
                 <CheckCircle2 className="w-10 h-10" />
               </div>
               
-              <h4 className="text-2xl font-bold mb-3 text-slate-900 dark:text-white">
+              <h2 id="contact-success-title" className="text-2xl font-bold mb-3 text-slate-900 dark:text-white">
                 Message Sent Successfully!
-              </h4>
+              </h2>
               
               <p className="text-slate-600 dark:text-slate-400 mb-6 text-sm leading-relaxed">
                 Thank you for reaching out. We have received your inquiry, and our digital transformation team will get back to you within 24 hours.

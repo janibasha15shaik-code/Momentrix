@@ -4,9 +4,27 @@ const { sendMailHelper } = require('../utils/mailer');
 
 // POST /api/contact
 router.post('/', async (req, res) => {
-  const { firstName, lastName, email, phone, service, message } = req.body;
+  const { firstName, lastName, email, phone, service, message, websiteUrl, hp } = req.body;
 
-  if (!firstName || !lastName || !email || !phone || !message) {
+  // Bot honeypot protection: if hidden field is filled, silently ignore
+  if (hp) {
+    return res.status(200).json({ success: true, message: 'Message sent successfully!' });
+  }
+
+  // Validate email
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(email).trim())) {
+    return res.status(400).json({ error: 'Please provide a valid email address.' });
+  }
+
+  // Support both general contact forms and quick website audit requests
+  const isAuditRequest = Boolean(websiteUrl && !message);
+  const resolvedFirstName = (firstName || (isAuditRequest ? 'Website Audit' : '')).trim();
+  const resolvedLastName = (lastName || (isAuditRequest ? 'Requester' : '')).trim();
+  const resolvedPhone = (phone || (isAuditRequest ? 'Not Provided' : '')).trim();
+  const resolvedMessage = (message || (isAuditRequest ? `Please generate a free audit report for website: ${websiteUrl}` : '')).trim();
+  const resolvedService = (service || (isAuditRequest ? 'Website & SEO Audit' : 'General Inquiry')).trim();
+
+  if (!resolvedFirstName || !resolvedMessage) {
     return res.status(400).json({ error: 'Please fill in all required fields.' });
   }
 
@@ -18,8 +36,8 @@ router.post('/', async (req, res) => {
     const companyMailOptions = {
       from: emailFrom,
       to: companyEmail,
-      subject: `New Contact Inquiry - ${service || 'General'}`,
-      text: `New contact form submission:\n\nName: ${firstName} ${lastName}\nEmail: ${email}\nPhone: ${phone}\nService: ${service || 'Not Specified'}\nMessage: ${message}\n\nDate: ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', timeZoneName: 'short' })}`,
+      subject: `New Inquiry - ${resolvedService}`,
+      text: `New contact submission:\n\nName: ${resolvedFirstName} ${resolvedLastName}\nEmail: ${email}\nPhone: ${resolvedPhone}\nService: ${resolvedService}\nWebsite: ${websiteUrl || 'N/A'}\nMessage: ${resolvedMessage}\n\nDate: ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', timeZoneName: 'short' })}`,
       html: `
         <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; border: 1px solid #ddd; padding: 20px; border-radius: 8px;">
           <h2 style="color: #16a34a; border-bottom: 2px solid #f0fdf4; padding-bottom: 10px;">New Contact Inquiry</h2>
@@ -27,7 +45,7 @@ router.post('/', async (req, res) => {
           <table style="width: 100%; border-collapse: collapse; margin-top: 15px; margin-bottom: 20px;">
             <tr>
               <td style="padding: 8px; border: 1px solid #eee; font-weight: bold; width: 150px;">Name:</td>
-              <td style="padding: 8px; border: 1px solid #eee;">${firstName} ${lastName}</td>
+              <td style="padding: 8px; border: 1px solid #eee;">${resolvedFirstName} ${resolvedLastName}</td>
             </tr>
             <tr>
               <td style="padding: 8px; border: 1px solid #eee; font-weight: bold;">Email:</td>
@@ -35,11 +53,11 @@ router.post('/', async (req, res) => {
             </tr>
             <tr>
               <td style="padding: 8px; border: 1px solid #eee; font-weight: bold;">Phone:</td>
-              <td style="padding: 8px; border: 1px solid #eee;"><a href="tel:${phone}">${phone}</a></td>
+              <td style="padding: 8px; border: 1px solid #eee;"><a href="tel:${resolvedPhone}">${resolvedPhone}</a></td>
             </tr>
             <tr>
               <td style="padding: 8px; border: 1px solid #eee; font-weight: bold;">Service of Interest:</td>
-              <td style="padding: 8px; border: 1px solid #eee;">${service || 'General Inquiry'}</td>
+              <td style="padding: 8px; border: 1px solid #eee;">${resolvedService}</td>
             </tr>
             <tr>
               <td style="padding: 8px; border: 1px solid #eee; font-weight: bold;">Date:</td>
@@ -47,7 +65,7 @@ router.post('/', async (req, res) => {
             </tr>
           </table>
           <h3 style="color: #333; border-bottom: 1px solid #eee; padding-bottom: 5px;">Message:</h3>
-          <div style="background-color: #f9f9f9; padding: 15px; border-radius: 4px; border-left: 4px solid #16a34a; white-space: pre-wrap;">${message}</div>
+          <div style="background-color: #f9f9f9; padding: 15px; border-radius: 4px; border-left: 4px solid #16a34a; white-space: pre-wrap;">${resolvedMessage}</div>
         </div>
       `
     };
@@ -57,7 +75,7 @@ router.post('/', async (req, res) => {
       from: emailFrom,
       to: email,
       subject: 'We have received your message! - Momentrix Media',
-      text: `Hi ${firstName},\n\nThank you for reaching out to Momentrix Media. We have received your inquiry regarding "${service || 'General'}" and our digital transformation team will get back to you within 24 hours.\n\nHere is a summary of your inquiry:\nName: ${firstName} ${lastName}\nEmail: ${email}\nPhone: ${phone}\nService: ${service || 'General'}\nMessage: ${message}\n\nBest regards,\nThe Momentrix Team`,
+      text: `Hi ${resolvedFirstName},\n\nThank you for reaching out to Momentrix Media. We have received your inquiry regarding "${resolvedService}" and our digital transformation team will get back to you within 24 hours.\n\nHere is a summary of your inquiry:\nName: ${resolvedFirstName} ${resolvedLastName}\nEmail: ${email}\nPhone: ${resolvedPhone}\nService: ${resolvedService}\nMessage: ${resolvedMessage}\n\nBest regards,\nThe Momentrix Team`,
       html: `
         <!DOCTYPE html>
         <html>
@@ -87,16 +105,16 @@ router.post('/', async (req, res) => {
             <div class="content">
               <span class="badge">Inquiry Received</span>
               <h2>Thank You for Contacting Us!</h2>
-              <p>Hi ${firstName},</p>
+              <p>Hi ${resolvedFirstName},</p>
               <p>We appreciate you reaching out. This email confirms that we have successfully received your inquiry.</p>
               <p>Our digital transformation team will review your message and we'll get back to you within 24 hours to address your request or schedule a consultation call.</p>
               
               <div class="summary-box">
                 <h3>Your Message Details</h3>
-                <div class="summary-item"><strong>Phone Number:</strong> ${phone}</div>
-                <div class="summary-item"><strong>Service of Interest:</strong> ${service || 'General Inquiry'}</div>
+                <div class="summary-item"><strong>Phone Number:</strong> ${resolvedPhone}</div>
+                <div class="summary-item"><strong>Service of Interest:</strong> ${resolvedService}</div>
                 <div class="summary-item"><strong>Submitted Message:</strong></div>
-                <div style="font-size: 13px; font-style: italic; color: #475569; margin-top: 6px; white-space: pre-wrap;">"${message}"</div>
+                <div style="font-size: 13px; font-style: italic; color: #475569; margin-top: 6px; white-space: pre-wrap;">"${resolvedMessage}"</div>
               </div>
               
               <p>If you need immediate assistance or want to update any details, feel free to reply directly to this email.</p>

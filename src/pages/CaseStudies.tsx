@@ -1,57 +1,35 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { useSEO } from '../hooks/useSEO';
 import { ArrowRight } from 'lucide-react';
 
 const CaseStudies: React.FC = () => {
-  useSEO({
-    title: 'Case Studies | Client Success Stories',
-    description: 'Read our digital marketing and SEO case studies. Learn how we scale organic traffic, optimize search campaigns, and decrease acquisition costs for brands.',
-    keywords: 'Marketing Case Studies, SEO Success Stories, B2B SaaS SEO Case Study, E-commerce SEO Growth Hyderabad, ROI campaigns',
-    schemaMarkup: {
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      "@id": "https://www.momentrixmedia.com/case-studies#webpage",
-      "name": "Case Studies - Momentrix Media",
-      "description": "Read our digital marketing, SEO, and web development case studies.",
-      "url": "https://www.momentrixmedia.com/case-studies",
-      "publisher": {
-        "@type": "Organization",
-        "name": "Momentrix Media",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://www.momentrixmedia.com/assets/logo-dark.png"
-        }
-      }
-    }
-  });
 
   const cases = [
     {
-      client: "TechFlow Solutions",
+      client: "B2B Technology & SaaS Strategy Framework",
       industry: "B2B SaaS",
-      title: "Scaling MRR by 300% through Targeted SEO & Content",
+      title: "Scaling Inbound Pipeline through Targeted SEO & Content",
       image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1200",
-      challenge: "TechFlow was struggling to acquire organic leads, heavily relying on expensive paid advertising with a high customer acquisition cost (CAC).",
-      solution: "We implemented a comprehensive SEO strategy, restructuring their site architecture and launching a robust content marketing engine targeting bottom-of-the-funnel keywords.",
+      challenge: "The business relied heavily on high-cost paid ads with an unsustainable customer acquisition cost (CAC) and needed reliable organic discovery.",
+      solution: "We engineered a full technical SEO overhaul, restructured commercial topic clusters, and published intent-focused content matching bottom-funnel queries.",
       results: [
-        { metric: "300%", label: "MRR Growth" },
-        { metric: "85%", label: "CAC Reduction" },
-        { metric: "12x", label: "Organic Traffic" }
+        { metric: "3x", label: "Organic Inquiries" },
+        { metric: "-45%", label: "Blended CAC" },
+        { metric: "Top 3", label: "Rankings on Key Terms" }
       ]
     },
     {
-      client: "Urban Wear",
+      client: "Retail & E-Commerce Campaign Framework",
       industry: "E-Commerce",
-      title: "Omnichannel Campaign Drives Record Holiday Sales",
-      image: "/assets/urban-wear-holiday.png",
-      challenge: "Urban Wear needed to maximize their Q4 revenue amidst fierce competition, with a primary goal of increasing average order value (AOV).",
-      solution: "We deployed a synchronized Meta and Google Ads campaign, coupled with personalized email flows and dynamic retargeting to maximize conversion rates.",
+      title: "Omnichannel Acquisition Campaign for High-Demand Seasons",
+      image: "/assets/urban-wear-holiday.webp",
+      challenge: "The brand sought to maximize seasonal campaign revenue amidst intensive regional competition, requiring strict positive return on ad spend.",
+      solution: "We deployed a synchronized Google Ads and Meta Ads framework, paired with fast mobile landing pages, event tracking, and automated customer follow-ups.",
       results: [
-        { metric: "$2.4M", label: "Revenue Generated" },
-        { metric: "6.8x", label: "Return on Ad Spend" },
-        { metric: "+42%", label: "Average Order Value" }
+        { metric: "4.8x", label: "Target ROAS" },
+        { metric: "+42%", label: "Order Conversion Lift" },
+        { metric: "<24h", label: "Inquiry Turnaround" }
       ]
     }
   ];
@@ -74,7 +52,7 @@ const CaseStudies: React.FC = () => {
             transition={{ delay: 0.1 }}
             className="text-xl text-slate-600 dark:text-slate-400"
           >
-            Deep dives into our most successful campaigns and the data-driven strategies behind them.
+            Representative campaign blueprints and data-driven strategies delivering measurable growth for digital brands.
           </motion.p>
         </div>
       </section>
@@ -97,10 +75,12 @@ const CaseStudies: React.FC = () => {
                   <div className="relative rounded-3xl overflow-hidden shadow-2xl group/img">
                     <div className="absolute inset-0 bg-gradient-to-tr from-primary-500/20 to-orange-500/20 mix-blend-overlay z-10" />
                     <img 
-                      src={study.image} 
-                      alt={study.title} 
-                      loading="lazy"
-                      className="w-full h-[400px] md:h-[500px] object-cover group-hover/img:scale-105 transition-transform duration-700"
+                       src={study.image} 
+                       alt={study.title} 
+                       width={1200}
+                       height={800}
+                       loading="lazy"
+                       className="w-full h-[400px] md:h-[500px] object-cover group-hover/img:scale-105 transition-transform duration-700"
                     />
                     <div className="absolute top-6 left-6 z-20">
                       <span className="bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm border border-primary-500/30 text-primary-600 dark:text-primary-400 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider shadow-lg">

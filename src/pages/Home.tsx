@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { useSEO } from '../hooks/useSEO';
 import { 
   ArrowRight, CheckCircle2, Megaphone, Smartphone, 
   TrendingUp, Target, PenTool, Search, 
@@ -34,162 +33,9 @@ const heroWords = [
 ];
 
 const Home: React.FC = () => {
-  useSEO({
-    title: 'Momentrix Media | Best Digital Marketing Agency & Web Development Company in Guntur & Hyderabad',
-    description: 'Momentrix Media is a top-rated digital marketing agency and web development company serving Guntur, Vijayawada, Amaravati and Hyderabad. We scale brands with organic SEO, Meta & Google ads, web development, and AI automation.',
-    keywords: 'Momentrix, Momentrix Media, Momentrix Guntur, Momentrix Hyderabad, Momentrix Media Guntur, Momentrix Media Hyderabad, Digital Marketing Agency in Guntur, Digital Marketing Agency in Hyderabad, SEO Services in Guntur, SEO Services in Hyderabad, Web Development Company in Guntur, Web Development Company in Hyderabad, Social Media Marketing Guntur, AI Automation Services, Best Digital Marketing Agency Andhra Pradesh, Best SEO Agency Guntur, Best Web Design Agency Hyderabad, Momentrix Media Agency',
-    googleSiteVerification: 'pk9KDgeeFJibf5zZd3ngCSwlVt06OaMcrmG6V9wWabU',
-    schemaMarkup: {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "Organization",
-          "@id": "https://www.momentrixmedia.com/#organization",
-          "name": "Momentrix Media",
-          "url": "https://www.momentrixmedia.com",
-          "logo": {
-            "@type": "ImageObject",
-            "url": "https://www.momentrixmedia.com/assets/logo-dark.png"
-          },
-          "email": "hello@momentrixmedia.com",
-          "contactPoint": {
-            "@type": "ContactPoint",
-            "telephone": "+91-868-6546-419",
-            "contactType": "sales",
-            "areaServed": "IN",
-            "availableLanguage": ["en", "te", "hi"]
-          },
-          "sameAs": [
-            "https://facebook.com/momentrixmedia",
-            "https://instagram.com/momentrix_media",
-            "https://linkedin.com/company/momentrixmedia"
-          ]
-        },
-        {
-          "@type": "ProfessionalService",
-          "@id": "https://www.momentrixmedia.com/#localbusiness",
-          "name": "Momentrix Media",
-          "image": "https://www.momentrixmedia.com/assets/logo-dark.png",
-          "url": "https://www.momentrixmedia.com",
-          "telephone": "+91-868-6546-419",
-          "email": "hello@momentrixmedia.com",
-          "priceRange": "₹₹",
-          "currenciesAccepted": "INR",
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "Ground floor, 1-12, 25, 3rd Line, Chandramouli Nagar",
-            "addressLocality": "Guntur",
-            "addressRegion": "Andhra Pradesh",
-            "postalCode": "522007",
-            "addressCountry": "IN"
-          },
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": 16.3132285,
-            "longitude": 80.42806
-          },
-          "areaServed": [
-            { "@type": "City", "name": "Guntur" },
-            { "@type": "City", "name": "Vijayawada" },
-            { "@type": "City", "name": "Amaravati" },
-            { "@type": "City", "name": "Hyderabad" },
-            { "@type": "City", "name": "Andhra Pradesh" },
-            { "@type": "City", "name": "Telangana" },
-            { "@type": "City", "name": "India" }
-          ],
-          "openingHoursSpecification": {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": [
-              "Monday",
-              "Tuesday",
-              "Wednesday",
-              "Thursday",
-              "Friday",
-              "Saturday"
-            ],
-            "opens": "09:00",
-            "closes": "18:00"
-          },
-          "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "5.0",
-            "reviewCount": "120",
-            "bestRating": "5",
-            "worstRating": "1"
-          }
-        },
-        {
-          "@type": "WebSite",
-          "@id": "https://www.momentrixmedia.com/#website",
-          "name": "Momentrix Media",
-          "url": "https://www.momentrixmedia.com",
-          "publisher": { "@id": "https://www.momentrixmedia.com/#organization" },
-          "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://www.momentrixmedia.com/explore?q={search_term_string}",
-            "query-input": "required name=search_term_string"
-          }
-        },
-        {
-          "@type": "ItemList",
-          "@id": "https://www.momentrixmedia.com/#sitenavigation",
-          "name": "Main Navigation Menu",
-          "itemListElement": [
-            {
-              "@type": "SiteNavigationElement",
-              "position": 1,
-              "name": "About Us",
-              "url": "https://www.momentrixmedia.com/about"
-            },
-            {
-              "@type": "SiteNavigationElement",
-              "position": 2,
-              "name": "Our Services",
-              "url": "https://www.momentrixmedia.com/services"
-            },
-            {
-              "@type": "SiteNavigationElement",
-              "position": 3,
-              "name": "SEO Services",
-              "url": "https://www.momentrixmedia.com/services/seo"
-            },
-            {
-              "@type": "SiteNavigationElement",
-              "position": 4,
-              "name": "Web Development",
-              "url": "https://www.momentrixmedia.com/services/web"
-            },
-            {
-              "@type": "SiteNavigationElement",
-              "position": 5,
-              "name": "Case Studies",
-              "url": "https://www.momentrixmedia.com/case-studies"
-            },
-            {
-              "@type": "SiteNavigationElement",
-              "position": 6,
-              "name": "Careers",
-              "url": "https://www.momentrixmedia.com/careers"
-            },
-            {
-              "@type": "SiteNavigationElement",
-              "position": 7,
-              "name": "Contact Us",
-              "url": "https://www.momentrixmedia.com/contact"
-            },
-            {
-              "@type": "SiteNavigationElement",
-              "position": 8,
-              "name": "Blog",
-              "url": "https://www.momentrixmedia.com/blog"
-            }
-          ]
-        }
-      ]
-    }
-  });
 
   const [wordIdx, setWordIdx] = useState(0);
+  const [flippedIndex, setFlippedIndex] = useState<number | null>(null);
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [showNewsletterSuccess, setShowNewsletterSuccess] = useState(false);
   const [newsletterLoading, setNewsletterLoading] = useState(false);
@@ -543,7 +389,7 @@ const Home: React.FC = () => {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-3 w-3 bg-primary-500"></span>
                 </span>
-                #1 Digital Marketing & Search Agency
+                Strategic Digital Marketing & Search Agency
               </motion.div>
               
               <motion.h1 variants={fadeIn} className="text-5xl md:text-6xl lg:text-6xl font-extrabold leading-tight mb-6 tracking-tight">
@@ -590,9 +436,11 @@ const Home: React.FC = () => {
               
               <div className="relative rounded-2xl overflow-hidden aspect-[4/3] md:aspect-[16/10] lg:aspect-[4/3] w-full">
                 <img 
-                  src="/assets/hero-marketing.png" 
-                  alt="Momentrix Digital Marketing & AI Automation" 
-                  loading="lazy"
+                  src="/assets/hero-marketing.webp"
+                  alt="Digital marketing and AI automation dashboard by Momentrix Media, Guntur"
+                  width={1024}
+                  height={1024}
+                  fetchPriority="high"
                   className="w-full h-full object-cover group-hover:scale-[1.03] transition-all duration-700 ease-out rounded-2xl"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent pointer-events-none" />
@@ -636,8 +484,10 @@ const Home: React.FC = () => {
               className="relative h-[450px] rounded-3xl overflow-hidden shadow-2xl group border border-slate-200 dark:border-slate-800"
             >
               <img 
-                src="/assets/momentrix-team.png" 
-                alt="Momentrix Agency Team" 
+                src="/assets/momentrix-team.webp"
+                alt="Momentrix Media digital marketing team at work"
+                width={1024}
+                height={1024}
                 loading="lazy"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
@@ -664,9 +514,9 @@ const Home: React.FC = () => {
               <span className="text-xs font-extrabold uppercase tracking-widest text-primary-600 bg-primary-50 dark:bg-primary-900/30 px-3 py-1.5 rounded-full mb-6 inline-block">
                 Who We Are
               </span>
-              <h3 className="text-3xl md:text-5xl font-bold mb-6">
+              <h2 className="text-3xl md:text-5xl font-bold mb-6">
                 Creating<span className="gradient-text"> Momentum </span>For Modern Brands
-              </h3>
+              </h2>
               <p className="text-slate-600 dark:text-slate-400 text-lg leading-relaxed mb-8">
                 Momentrix Media is a strategic marketing and technology partner committed to helping businesses build stronger visibility, improve operational efficiency, and accelerate sustainable growth. We bring together traditional marketing, digital marketing, Meta advertising, SEO, GEO, website design, and AI automation into one integrated framework designed for measurable business impact.
                 We work with organizations that require more than promotional execution. Our approach combines strategic thinking, advanced technology, and disciplined execution to strengthen brand presence, improve customer engagement, and support scalable business performance.
@@ -796,7 +646,7 @@ const Home: React.FC = () => {
               <span className="text-xs font-extrabold uppercase tracking-widest text-primary-600 bg-primary-50 dark:bg-primary-900/30 px-3 py-1.5 rounded-full mb-6 inline-block">
                 Search Engine Optimization
               </span>
-              <h3 className="text-3xl md:text-5xl font-bold mb-6">Drive Organic Traffic</h3>
+              <h2 className="text-3xl md:text-5xl font-bold mb-6">Drive Organic Traffic</h2>
               <p className="text-slate-600 dark:text-slate-400 text-lg leading-relaxed mb-8">
                 At Momentrix, we build your online domain authority and increase search rankings so that you list on top of search engines like Google, Yahoo, and Bing. We design strategic keywords funnels that attract high-intent customers directly to your platform.
               </p>
@@ -852,8 +702,8 @@ const Home: React.FC = () => {
                     </div>
                     <div className="flex-grow">
                       <h4 className="text-sm font-bold text-slate-900 dark:text-white">Momentrix Headquarters</h4>
-                      <p className="text-xs text-slate-400 font-semibold mb-1">5.0 ⭐⭐⭐⭐⭐ (120+ Reviews)</p>
-                      <p className="text-[10px] text-primary-600 dark:text-primary-400 font-bold uppercase tracking-wider">Open Now · 24/7 Operations</p>
+                      <p className="text-xs text-slate-400 font-semibold mb-1">Local Business Profile • Guntur, AP</p>
+                      <p className="text-[10px] text-primary-600 dark:text-primary-400 font-bold uppercase tracking-wider">Open Now · Mon–Sat 09:00–18:00 IST</p>
                     </div>
                     <span className="text-xs text-slate-400 font-extrabold uppercase bg-white dark:bg-slate-850 px-2.5 py-1 rounded border border-slate-200 dark:border-slate-700">Map Pin</span>
                   </div>
@@ -891,8 +741,10 @@ const Home: React.FC = () => {
                 {/* Social Post Graphic Mockup */}
                 <div className="w-full aspect-square bg-slate-100 dark:bg-slate-800 rounded-2xl mb-4 relative overflow-hidden flex items-center justify-center border border-slate-150 dark:border-slate-750">
                   <img 
-                    src="/assets/social-ad-campaign.png" 
-                    alt="Social Ad Campaign" 
+                    src="/assets/social-ad-campaign.webp"
+                    alt="Example social media ad campaign creative"
+                    width={1024}
+                    height={1024}
                     loading="lazy"
                     className="absolute inset-0 w-full h-full object-cover"
                   />
@@ -922,7 +774,7 @@ const Home: React.FC = () => {
               <span className="text-xs font-extrabold uppercase tracking-widest text-primary-600 bg-primary-50 dark:bg-primary-900/30 px-3 py-1.5 rounded-full mb-6 inline-block">
                 Social Media
               </span>
-              <h3 className="text-3xl md:text-5xl font-bold mb-6">Build Your Brand</h3>
+              <h2 className="text-3xl md:text-5xl font-bold mb-6">Build Your Brand</h2>
               <p className="text-slate-600 dark:text-slate-400 text-lg leading-relaxed mb-8">
                 Showcase your brand globally through successful dynamic marketing campaigns on platforms like Facebook, Instagram, and LinkedIn. We architect unified digital presences that engage key demographics and spark organic, loyal brand advocacy.
               </p>
@@ -948,39 +800,52 @@ const Home: React.FC = () => {
       <section className="py-24">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-sm font-bold text-primary-600 tracking-wider uppercase mb-3">Our Expertise</h2>
-            <h3 className="text-3xl md:text-5xl font-bold mb-6">Comprehensive Digital Solutions</h3>
+            <p className="text-sm font-bold text-primary-600 tracking-wider uppercase mb-3">Our Expertise</p>
+            <h2 className="text-3xl md:text-5xl font-bold mb-6">Comprehensive Digital Solutions</h2>
             <p className="text-slate-600 dark:text-slate-400 text-lg">
-              We provide end-to-end digital marketing services tailored to your specific business goals. Hover to explore our sub-capabilities.
+              We provide end-to-end digital marketing services tailored to your specific business goals. Tap or hover to explore sub-capabilities.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {homeServices.map((service, idx) => (
-              <motion.div 
-                key={idx}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="flip-box h-80 w-full cursor-pointer"
-              >
-                <div className="flip-box-inner shadow-lg">
-                  {/* Front Side */}
-                  <div className="flip-box-front p-8 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex flex-col justify-between items-center text-center">
-                    <div className="w-16 h-16 rounded-2xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center mb-4 transition-transform duration-300">
-                      {service.icon}
+            {homeServices.map((service, idx) => {
+              const isFlipped = flippedIndex === idx;
+              return (
+                <motion.div 
+                  key={idx}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 }}
+                  className={`flip-box h-80 w-full cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded-3xl ${isFlipped ? 'is-flipped' : ''}`}
+                  tabIndex={0}
+                  role="button"
+                  aria-expanded={isFlipped}
+                  aria-label={`${service.title} details, click to flip`}
+                  onClick={() => setFlippedIndex((prev) => (prev === idx ? null : idx))}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      setFlippedIndex((prev) => (prev === idx ? null : idx));
+                    }
+                  }}
+                >
+                  <div className="flip-box-inner shadow-lg">
+                    {/* Front Side */}
+                    <div className="flip-box-front p-8 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex flex-col justify-between items-center text-center">
+                      <div className="w-16 h-16 rounded-2xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center mb-4 transition-transform duration-300">
+                        {service.icon}
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-bold mb-3">{service.title}</h3>
+                        <p className="text-sm text-slate-600 dark:text-slate-400 line-clamp-3">
+                          {service.desc}
+                        </p>
+                      </div>
+                      <div className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest flex items-center gap-1.5 mt-2">
+                        Tap / Hover to View <ArrowRight className="w-3.5 h-3.5" />
+                      </div>
                     </div>
-                    <div>
-                      <h4 className="text-xl font-bold mb-3">{service.title}</h4>
-                      <p className="text-sm text-slate-600 dark:text-slate-400 line-clamp-3">
-                        {service.desc}
-                      </p>
-                    </div>
-                    <div className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest flex items-center gap-1.5 mt-2">
-                      Hover to Expand <ArrowRight className="w-3.5 h-3.5" />
-                    </div>
-                  </div>
 
                   {/* Back Side */}
                   <div className="flip-box-back p-8 bg-slate-950 dark:bg-dark text-white border border-primary-500/30 flex flex-col justify-between text-left">
@@ -1019,7 +884,8 @@ const Home: React.FC = () => {
                   </div>
                 </div>
               </motion.div>
-            ))}
+            );
+          })}
           </div>
           
           <div className="text-center mt-12">
@@ -1079,10 +945,10 @@ const Home: React.FC = () => {
       <section className="py-24 border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-darker">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-sm font-bold text-primary-600 tracking-wider uppercase mb-3">Industry Insights</h2>
-            <h3 className="text-3xl md:text-5xl font-bold mb-6">Stay Ahead in Digital Excellence</h3>
+            <p className="text-sm font-bold text-primary-600 tracking-wider uppercase mb-3">Industry Insights</p>
+            <h2 className="text-3xl md:text-5xl font-bold mb-6">Stay Ahead in Digital Excellence</h2>
             <p className="text-slate-600 dark:text-slate-400 text-lg">
-              We monitor global technical journals and publication indices to keep our marketing engines at the cutting edge.
+              We monitor global technical publications and industry indices to keep our marketing systems at the cutting edge.
             </p>
           </div>
 
@@ -1210,7 +1076,7 @@ const Home: React.FC = () => {
               <span className="text-[10px] font-extrabold text-primary-400 uppercase tracking-widest bg-primary-950/60 border border-primary-500/20 px-3 py-1 rounded-full mb-3 inline-block">
                 Stay Updated
               </span>
-              <h4 className="text-2xl font-bold mb-2">Subscribe to Our newsletter</h4>
+              <h3 className="text-2xl font-bold mb-2">Subscribe to Our newsletter</h3>
               <p className="text-xs text-slate-400 font-medium">Get the latest SEO blueprints, social updates, and growth scaling methods delivered straight to your inbox.</p>
             </div>
             
@@ -1251,20 +1117,11 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Bottom CTA Banner: Take your Business Online! (Saka Digital inspired) */}
+      {/* Bottom CTA Banner: Take your Business Online! */}
       <section className="py-24 relative overflow-hidden text-center text-white bg-slate-950">
-        {/* Saka Digital Inspired Data Stream Video Background */}
-        <div className="absolute inset-0 overflow-hidden opacity-20 z-0 mix-blend-overlay pointer-events-none">
-          <video 
-            autoPlay 
-            loop 
-            muted 
-            playsInline 
-            className="w-full h-full object-cover"
-          >
-            <source src="https://www.sakadigital.in/wp-content/uploads/2023/10/3.mp4" type="video/mp4" />
-          </video>
-        </div>
+        {/* Background glow and subtle animated grid */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(168,85,247,0.18),transparent_65%)] pointer-events-none" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:32px_32px] opacity-40 pointer-events-none" />
         
         <div className="container mx-auto px-4 md:px-6 relative z-10 flex flex-col items-center">
           {/* Circular spinning neon green badge */}
